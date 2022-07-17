@@ -6,6 +6,7 @@
     thunderbird-wayland
     vlc
     mpv
+    element-desktop-wayland
   ];
 
   # programs.waybar.enable = true;
@@ -132,6 +133,7 @@
 
     neovim = {
       enable = true;
+      extraConfig = "set clipboard+=unnamedplus";
       # TODO set editor for sudo or use emacs+doas
     };
   };
