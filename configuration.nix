@@ -52,7 +52,7 @@ in
       enable = true;
       device = "nodev";
       efiSupport = true;
-      configurationLimit = 10;
+      configurationLimit = 20;
     };
     efi = {
       canTouchEfiVariables = true;
@@ -74,11 +74,9 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
-  programs.sway.enable = true;
   services.xserver.displayManager = {
-    defaultSession = "sway";
+    # defaultSession = "sway";
     gdm = {
       enable = true;
       wayland = true;
@@ -131,6 +129,13 @@ in
 
   programs.fish.enable = true;
 
+  fonts = {
+    enableDefaultFonts = true;
+    fonts = with pkgs; [
+      nerdfonts # (nerdfonts.override { fonts = [ "Iosevka" "Meslo" ]; })
+    ];
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -157,15 +162,15 @@ in
     btop
     htop
     neofetch
+    ripgrep
+    exa
+    bat
+    du-dust
+    #fzf
+    fd
 
     # TODO: move this to home.nix
     firefox-wayland
-    # vscodium
-    alacritty
-    xfce.thunar
-    krita
-    stellarium
-    libreoffice
 
     texlive.combined.scheme-full
 
@@ -201,12 +206,21 @@ in
     gtkUsePortal = true;
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    XDG_CONFIG_HOME = "$HOME/.config";
+    NIXOS_OZONE_WL = "1";
+  };
 
   # Brightness
   programs.light.enable = true;
 
-  security.sudo.extraConfig = "Defaults insults"; # TODO: doesn't work
+  security.sudo = {
+    package = pkgs.sudo.override {
+      withInsults = true;
+    };
+    extraConfig = "Defaults insults";
+  };
+
   security.pam.services.swaylock = {
     text = "auth include login";
   };
@@ -221,12 +235,6 @@ in
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   system.stateVersion = "22.05";
 }

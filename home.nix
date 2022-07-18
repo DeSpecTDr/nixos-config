@@ -7,6 +7,13 @@
     vlc
     mpv
     element-desktop-wayland
+    keepassxc
+    alacritty
+    xfce.thunar
+    krita
+    stellarium
+    libreoffice
+    tdesktop
   ];
 
   # programs.waybar.enable = true;
@@ -14,7 +21,6 @@
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    # For Pycharm
     extraSessionCommands = ''
       export _JAVA_AWT_WM_NONREPARENTING=1
     '';
@@ -49,16 +55,13 @@
           "XF86MonBrightnessUp" = "exec light -A 10";
 
           # Volume TODO switch to pavucontrol? pamixer? pactl?
-          "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'";
-          "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'";
+          "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +5%'";
+          "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -5%'";
           "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
         };
-      # Status bar(s)
-      # bars = [{
-      #   # fonts.size = 15.0;
-      #   command = "waybar";
-      #   position = "bottom";
-      # }];
+      #bars = [{
+        #statusCommand = "${pkgs.i3status}/bin/i3status";
+      #}];
     };
     extraConfig = ''
       exec dbus-sway-environment
@@ -77,6 +80,20 @@
 
 
   programs = {
+    i3status = {
+      enable = true;
+      modules = {
+        "volume master" = {
+          position = 1;
+          settings = {
+            format = "♪ %volume";
+            format_muted = "♪ muted (%volume)";
+            device = "pulse";
+          };
+        };
+      };
+    };
+
     vscode = {
       enable = true;
       package = pkgs.vscodium;
@@ -129,6 +146,9 @@
       enable = true;
       userName = "DeSpecTDr";
       userEmail = "73001251+DeSpecTDr@users.noreply.github.com";
+      extraConfig = {
+        init.defaultBranch = "main";
+      };
     };
 
     neovim = {
