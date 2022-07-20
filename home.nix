@@ -60,7 +60,7 @@
           "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
         };
       #bars = [{
-        #statusCommand = "${pkgs.i3status}/bin/i3status";
+      #statusCommand = "${pkgs.i3status}/bin/i3status";
       #}];
     };
     extraConfig = ''
@@ -101,6 +101,7 @@
         ms-toolsai.jupyter
         usernamehw.errorlens
         asvetliakov.vscode-neovim
+        matklad.rust-analyzer
         vadimcn.vscode-lldb
         serayuzgur.crates
         tamasfe.even-better-toml

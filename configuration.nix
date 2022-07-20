@@ -74,18 +74,28 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager = {
-    # defaultSession = "sway";
-    gdm = {
-      enable = true;
-      wayland = true;
-    };
-    autoLogin = {
-      enable = true;
-      user = "user";
+  #services.xserver.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.sway}/bin/sway";
+        user = "user";
+      };
+      default_session = initial_session;
     };
   };
+  # services.xserver.displayManager = {
+  #   # defaultSession = "sway";
+  #   gdm = {
+  #     enable = true;
+  #     wayland = true;
+  #   };
+  #   autoLogin = {
+  #     enable = true;
+  #     user = "user";
+  #   };
+  # };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -96,8 +106,8 @@ in
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    # alsa.enable = true;
+    # alsa.support32Bit = true;
     pulse.enable = true;
   };
 
