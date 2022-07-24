@@ -47,17 +47,23 @@ in
       ./hardware-configuration.nix
     ];
 
-  boot.loader = {
-    grub = {
-      enable = true;
-      device = "nodev";
-      efiSupport = true;
-      configurationLimit = 20;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_xanmod;
+    loader = {
+      timeout = 1;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        configurationLimit = 20;
+      };
+      efi = {
+        canTouchEfiVariables = true; # false?
+        # efiSysMountPoint = "/boot/efi";
+      };
     };
-    efi = {
-      canTouchEfiVariables = true;
-      # efiSysMountPoint = "/boot/efi";
-    };
+    # tmpOnTmpfs = true;?????
+    # plymouth.enable = true;
   };
 
   networking.hostName = "nixos";
@@ -74,16 +80,23 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  #services.xserver.enable = true;
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.sway}/bin/sway";
-        user = "user";
+  services = {
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "${pkgs.sway}/bin/sway";
+          user = "user";
+        };
+        default_session = initial_session;
       };
-      default_session = initial_session;
     };
+    # xserver = {
+    #   enable = true;
+    #   layout = "us";
+    #   # displayManager.lightdm.enable = false;???
+    #   desktopManager.xterm.enable = false;
+    # };
   };
   # services.xserver.displayManager = {
   #   # defaultSession = "sway";
