@@ -13,7 +13,6 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.kernel.sysctl = { "vm.swappiness" = 1; }; # TODO: move to configuration.nix
 
   boot.initrd.luks.devices."cryptlvm" = {
     device = "/dev/disk/by-uuid/6e0be3f0-43a7-41e5-8f19-ec00981f014a";

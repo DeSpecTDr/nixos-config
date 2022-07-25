@@ -49,6 +49,7 @@ in
 
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod;
+    kernel.sysctl = { "vm.swappiness" = 1; };
     loader = {
       timeout = 1;
       grub = {
@@ -58,11 +59,12 @@ in
         configurationLimit = 20;
       };
       efi = {
-        canTouchEfiVariables = true; # false?
+        canTouchEfiVariables = true; # TODO: false?
+        # when grub gets luks2 support
         # efiSysMountPoint = "/boot/efi";
       };
     };
-    # tmpOnTmpfs = true;?????
+    tmpOnTmpfs = true; # TODO: umount and clear
     # plymouth.enable = true;
   };
 
@@ -129,6 +131,7 @@ in
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "video" ];
+    initialPassword = "notmyrealpassword";
   };
 
   nix = {
