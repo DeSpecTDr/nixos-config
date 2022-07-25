@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nix-doom-emacs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -69,13 +69,17 @@
     '';
   };
 
-  services.swayidle = {
-    enable = true;
-    timeouts = [{
-      timeout = 300;
-      command = ''swaymsg "output * dpms off"'';
-      resumeCommand = ''swaymsg "output * dpms on"'';
-    }];
+  services = {
+    swayidle = {
+      enable = true;
+      timeouts = [{
+        timeout = 300;
+        command = ''swaymsg "output * dpms off"'';
+        resumeCommand = ''swaymsg "output * dpms on"'';
+      }];
+    };
+
+    emacs.enable = true; # TODO: check if works emacsclient -c
   };
 
 
@@ -114,8 +118,8 @@
     fish = {
       enable = true;
       shellAliases = {
-        nix-upd = "nix flake update ~/nixos";
-        nix-reb = "sudo nixos-rebuild switch --flake ~/nixos";
+        nixupd = "nix flake update ~/nixos";
+        nixreb = "sudo nixos-rebuild switch --flake ~/nixos";
         e = "nvim ";
         se = "EDITOR=nvim sudo -e ";
       };
@@ -156,6 +160,11 @@
       enable = true;
       extraConfig = "set clipboard+=unnamedplus";
       # TODO set editor for sudo or use emacs+doas
+    };
+
+    doom-emacs = {
+      enable = true;
+      doomPrivateDir = ./doom.d;
     };
   };
 

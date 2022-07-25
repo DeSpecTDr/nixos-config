@@ -9,11 +9,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-doom-emacs = {
+      url = "github:nix-community/nix-doom-emacs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     #agenix.url = "github:ryantm/agenix";
     #agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, ... }: {
+  outputs = inputs @ { nixpkgs, home-manager, nix-doom-emacs, ... }: {
     nixosConfigurations = {
       # TODO: change hostname from nixos to something else
       "nixos" = nixpkgs.lib.nixosSystem {
@@ -24,7 +29,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.user = import ./home.nix;
+            home-manager.users.user = nixpkgs.lib.mkMerge [
+              nix-doom-emacs.hmModule
+              (import ./home.nix)
+            ];
           }
         ];
       };
