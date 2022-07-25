@@ -45,6 +45,7 @@ in
   imports =
     [
       ./hardware-configuration.nix
+      ./modules/pipewire.nix
     ];
 
   boot = {
@@ -115,16 +116,6 @@ in
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   # services.printing.drivers = [ pkgs.gutenprint ];
-
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    # alsa.enable = true;
-    # alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   # Don't forget to set a password with ‘passwd’.
   users.users.user = {
