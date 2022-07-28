@@ -53,14 +53,6 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/39448f34-d8c3-40e2-ab83-23d880489d62"; }];
 
-  networking = {
-    useDHCP = false;
-    interfaces = {
-      enp3s0.useDHCP = true;
-      wlp4s0.useDHCP = true;
-    };
-  };
-
   # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.amd.updateMicrocode = true; # config.hardware.enableRedistributableFirmware
 }

@@ -1,8 +1,11 @@
 { config, pkgs, lib, nix-doom-emacs, ... }:
 
 {
+  imports = [
+    ./modules/home/sway.nix
+  ];
   home.packages = with pkgs; [
-    ckan
+    ckan # ksp mod manager
     thunderbird-wayland
     vlc
     mpv
@@ -14,90 +17,18 @@
     stellarium
     libreoffice
     tdesktop
+    zathura # pdf viewer
+    filelight # file size graph
+    rnix-lsp # nix lsp
+    #rnix-lsp.defaultPackage.x86_64-linux
   ];
 
-  # programs.waybar.enable = true;
-
-  wayland.windowManager.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraSessionCommands = ''
-      export _JAVA_AWT_WM_NONREPARENTING=1
-    '';
-    config = {
-      input = {
-        "1:1:AT_Translated_Set_2_keyboard" = {
-          xkb_layout = "us,ru";
-          xkb_options = "grp:alt_shift_toggle";
-        };
-        "type:touchpad" = {
-          tap = "enabled";
-          natural_scroll = "enabled";
-        };
-      };
-      output = {
-        "*" = { bg = "~/nixos/wallpaper.jpg fill"; };
-      };
-      terminal = "alacritty";
-      menu = "bemenu-run";
-      modifier = "Mod4"; # Super
-      keybindings =
-        let
-          cfg = config.wayland.windowManager.sway.config;
-        in
-        lib.mkOptionDefault {
-          "${cfg.modifier}+q" = "kill";
-          "${cfg.modifier}+c" = ''exec grim -g "$(slurp)" - | wl-copy'';
-          "Ctrl+Alt+l" = "exec swaylock --screenshots --clock --indicator --effect-blur 7x5 --fade-in 0.2"; # TODO doesn't work
-
-          # Brightness
-          "XF86MonBrightnessDown" = "exec light -U 10";
-          "XF86MonBrightnessUp" = "exec light -A 10";
-
-          # Volume TODO switch to pavucontrol? pamixer? pactl?
-          "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +5%'";
-          "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -5%'";
-          "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
-        };
-      #bars = [{
-      #statusCommand = "${pkgs.i3status}/bin/i3status";
-      #}];
-    };
-    extraConfig = ''
-      exec dbus-sway-environment
-      exec configure-gtk
-    '';
-  };
-
   services = {
-    swayidle = {
-      enable = true;
-      timeouts = [{
-        timeout = 300;
-        command = ''swaymsg "output * dpms off"'';
-        resumeCommand = ''swaymsg "output * dpms on"'';
-      }];
-    };
-
-    emacs.enable = true; # TODO: check if works emacsclient -c
+    emacs.enable = true;
   };
 
 
   programs = {
-    i3status = {
-      enable = true;
-      modules = {
-        "volume master" = {
-          position = 1;
-          settings = {
-            format = "♪ %volume";
-            format_muted = "♪ muted (%volume)";
-            device = "pulse";
-          };
-        };
-      };
-    };
-
     vscode = {
       enable = true;
       package = pkgs.vscodium;
@@ -158,7 +89,20 @@
 
     neovim = {
       enable = true;
-      extraConfig = "set clipboard+=unnamedplus";
+      extraConfig = ''
+        set clipboard+=unnamedplus
+        " syntax enable
+        " filetype plugin indent on
+      '';
+      plugins = with pkgs.vimPlugins; [
+        {
+          plugin = vimtex;
+          config = ''
+            let g:vimtex_view_method = 'zathura'
+            let g:vimtex_compiler_method = 'latexmk'
+          '';
+        }
+      ];
       # TODO set editor for sudo or use emacs+doas
     };
 

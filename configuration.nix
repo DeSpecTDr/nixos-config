@@ -55,8 +55,9 @@ in
       timeout = 1;
       grub = {
         enable = true;
-        device = "nodev";
         efiSupport = true;
+        device = "nodev";
+        # gfxmodeEfi = "1080x768"; # TODO: set actual resolution
         configurationLimit = 20;
       };
       efi = {
@@ -69,14 +70,23 @@ in
     # plymouth.enable = true;
   };
 
-  networking.hostName = "nixos";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
+    useDHCP = false; # TODO: check if networkmanager sets dhcp itself
+    # interfaces = {
+    #   enp3s0.useDHCP = true;
+    #   wlp4s0.useDHCP = true;
+    # };
+  };
 
   time.timeZone = "Europe/Moscow";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.utf8";
-  i18n.extraLocaleSettings.LC_TIME = "en_DK.UTF-8"; # ISO-8601 time
+  i18n = {
+    defaultLocale = "en_US.utf8";
+    extraLocaleSettings.LC_TIME = "en_DK.UTF-8"; # ISO-8601 time
+  };
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -86,9 +96,10 @@ in
   services = {
     greetd = {
       enable = true;
+      vt = 7;
       settings = rec {
         initial_session = {
-          command = "${pkgs.sway}/bin/sway";
+          command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
           user = "user";
         };
         default_session = initial_session;
@@ -101,23 +112,11 @@ in
     #   desktopManager.xterm.enable = false;
     # };
   };
-  # services.xserver.displayManager = {
-  #   # defaultSession = "sway";
-  #   gdm = {
-  #     enable = true;
-  #     wayland = true;
-  #   };
-  #   autoLogin = {
-  #     enable = true;
-  #     user = "user";
-  #   };
-  # };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   # services.printing.drivers = [ pkgs.gutenprint ];
 
-  # Don't forget to set a password with ‘passwd’.
   users.users.user = {
     isNormalUser = true;
     shell = pkgs.fish;
@@ -157,8 +156,8 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # sway
-    dbus-sway-environment
-    configure-gtk
+    #dbus-sway-environment
+    #configure-gtk
     wayland
     glib # gsettings
     dracula-theme # gtk theme
@@ -185,22 +184,11 @@ in
     du-dust
     #fzf
     fd
+    smartmontools
 
     # TODO: move this to home.nix
     firefox-wayland
-
     texlive.combined.scheme-full
-
-    # (steam.override {
-    #   extraPkgs = pkgs: [ mono gtk3 gtk3-x11 libgdiplus zlib ];
-    #   nativeOnly = true;
-    # }).run
-    # (steam.override {
-    #   withPrimus = true;
-    #   extraPkgs = pkgs: [ bumblebee glxinfo ];
-    #   nativeOnly = true;
-    # }).run
-    # (steam.override { withJava = true; })
   ];
 
   programs.steam = {
