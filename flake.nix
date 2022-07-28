@@ -14,11 +14,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #agenix.url = "github:ryantm/agenix";
-    #agenix.inputs.nixpkgs.follows = "nixpkgs";
+    rnix-lsp = {
+      url = "github:nix-community/rnix-lsp/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # agenix = {
+    #   url = "github:ryantm/agenix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, nix-doom-emacs, ... }: {
+  outputs = inputs @ { nixpkgs, home-manager, nix-doom-emacs, rnix-lsp, ... }: {
     nixosConfigurations = {
       # TODO: change hostname from nixos to something else
       "nixos" = nixpkgs.lib.nixosSystem {
@@ -27,12 +34,14 @@
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.user = nixpkgs.lib.mkMerge [
-              nix-doom-emacs.hmModule
-              (import ./home.nix)
-            ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.user = nixpkgs.lib.mkMerge [
+                nix-doom-emacs.hmModule
+                (import ./home.nix) # (inputs // { inherit inputs; }))
+              ];
+            };
           }
         ];
       };
