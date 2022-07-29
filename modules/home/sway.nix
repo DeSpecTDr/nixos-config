@@ -5,6 +5,7 @@
     grim
     slurp
     playerctl
+    swaylock-effects # check its repository later
   ];
 
   wayland.windowManager.sway = {
@@ -34,7 +35,8 @@
         lib.mkOptionDefault {
           "${mod}+q" = "kill";
           "${mod}+c" = ''exec grim -g "$(slurp)" - | wl-copy'';
-          "Ctrl+Alt+l" = "exec swaylock --screenshots --clock --indicator --effect-blur 7x5 --fade-in 0.2"; # TODO doesn't work
+          # TODO: configure swaylock-effects
+          "Ctrl+Alt+l" = "exec swaylock --screenshots --clock --indicator --effect-blur 7x5 --fade-in 0.2";
 
           # brightness keys
           "XF86MonBrightnessDown" = "exec light -U 10";
@@ -58,12 +60,15 @@
         # position = "top";
       }];
     };
+    # systemdIntegration = true;
     # extraConfig = ''
     #   exec dbus-sway-environment
+    # '';
     #   exec configure-gtk
     # '';
     # TODO: check if this works
     extraSessionCommands = ''
+      export NIXOS_OZONE_WL=1
       export _JAVA_AWT_WM_NONREPARENTING=1
     '';
     #   export XDG_SESSION_TYPE=wayland
@@ -85,24 +90,23 @@
 
 
   programs = {
-    i3status = {
-      enable = true;
-      modules = {
-        "volume master" = {
-          position = 1;
-          settings = {
-            format = "♪ %volume";
-            format_muted = "♪ muted (%volume)";
-            device = "pulse";
-          };
-        };
-      };
-    };
-
-    i3status-rust.enable = true;
+    # i3status = {
+    #   enable = true;
+    #   modules = {
+    #     "volume master" = {
+    #       position = 1;
+    #       settings = {
+    #         format = "♪ %volume";
+    #         format_muted = "♪ muted (%volume)";
+    #         device = "pulse";
+    #       };
+    #     };
+    #   };
+    # };
 
     waybar = {
       enable = true;
+      # systemd.enable = true;
     };
   };
 }
