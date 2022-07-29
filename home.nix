@@ -1,26 +1,27 @@
-{ config, pkgs, lib, nix-doom-emacs, ... }:
-
-{
+{ config, pkgs, lib, inputs, ... }: {
   imports = [
     ./modules/home/sway.nix
   ];
+
   home.packages = with pkgs; [
     ckan # ksp mod manager
-    thunderbird-wayland
+    thunderbird-wayland # -wayland???
     vlc
     mpv
-    element-desktop-wayland
+    element-desktop-wayland # -wayland???
     keepassxc
     alacritty
     xfce.thunar
     krita
     stellarium
     libreoffice
-    tdesktop
+    tdesktop # telegram
     zathura # pdf viewer
     filelight # file size graph
-    rnix-lsp # nix lsp
-    #rnix-lsp.defaultPackage.x86_64-linux
+    audacious # audio player
+
+    inputs.rnix-lsp.defaultPackage.${pkgs.system}
+    unstable.hollywood
   ];
 
   services = {
@@ -40,9 +41,10 @@
         vadimcn.vscode-lldb
         serayuzgur.crates
         tamasfe.even-better-toml
-        arrterian.nix-env-selector
+        # arrterian.nix-env-selector
         jnoortheen.nix-ide
         ms-python.python
+        # TODO: add latex workshop, direnv
       ];
     };
 
@@ -76,7 +78,7 @@
       };
     };
 
-    nix-index.enable = true; # TODO: is it really needed?
+    nix-index.enable = true; # nix-index, nix-locate
 
     git = {
       enable = true;
@@ -95,6 +97,7 @@
         " filetype plugin indent on
       '';
       plugins = with pkgs.vimPlugins; [
+        vim-nix
         {
           plugin = vimtex;
           config = ''
@@ -110,7 +113,19 @@
       enable = true;
       doomPrivateDir = ./doom.d;
     };
+
+    fzf.enable = true;
+    zoxide.enable = true;
+    exa = {
+      enable = true;
+      enableAliases = true;
+    };
+
+    direnv.enable = true;
+    direnv.nix-direnv.enable = true;
   };
+
+  xdg.enable = true;
 
   home = {
     username = "user";
