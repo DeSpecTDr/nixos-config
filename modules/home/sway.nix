@@ -77,7 +77,7 @@ in
           # middle_emulation = "enabled"; default?
         };
       };
-      output."*" = { bg = "~/nixos/wallpaper.jpg fill"; };
+      output."*" = { bg = "~/nixos/wallpapers/wallpaper.jpg fill"; };
       terminal = "alacritty";
       menu = "bemenu-run";
       modifier = "Mod4"; # Super
