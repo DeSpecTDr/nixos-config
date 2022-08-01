@@ -106,9 +106,10 @@
 
     # TODO: move this to home.nix
     firefox-wayland
-    texlive.combined.scheme-full
   ];
 
+  # enable flatpak for steam
+  services.flatpak.enable = true;
 
   # TODO: move this to home-manager and enable hardware.opengl!
   programs.steam = {

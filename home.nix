@@ -19,6 +19,7 @@
     zathura # pdf viewer
     filelight # file size graph
     audacious # audio player
+    texlive.combined.scheme-full # latex
 
     inputs.rnix-lsp.defaultPackage.${pkgs.system}
     unstable.hollywood
@@ -55,6 +56,7 @@
         nixreb = "sudo nixos-rebuild switch --flake ~/nixos";
         e = "nvim ";
         se = "EDITOR=nvim sudo -e ";
+        checksystem = "SYSTEMD_LESS=FRXMK journalctl -b -x -p 5 && systemctl --failed";
       };
     };
 
@@ -78,7 +80,18 @@
       };
     };
 
+    dircolors.enable = true;
+
     nix-index.enable = true; # nix-index, nix-locate
+
+    obs-studio = {
+      enable = true;
+      # Works without that?
+      # plugins = with obs-studio-plugins; [
+      #   wlrobs
+      #   obs-pipewire-audio-capture
+      # ];
+    };
 
     git = {
       enable = true;

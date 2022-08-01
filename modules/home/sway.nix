@@ -15,7 +15,7 @@ let
       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
       systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
       systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-    '';
+    ''; # TODO: is restarting needed?
   };
 
   # currently, there is some friction between sway and gtk:
@@ -37,8 +37,10 @@ let
         export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
         gnome_schema=org.gnome.desktop.interface
         gsettings set $gnome_schema gtk-theme 'Dracula'
-      '';
+      ''; # TODO: check cursor theme
   };
+
+  swaylock = "swaylock --screenshots --clock --indicator --effect-blur 7x5 --fade-in 0.2";
 in
 {
   home.packages = with pkgs; [
@@ -55,7 +57,7 @@ in
     swaylock-effects # check its repository later
 
     dbus-sway-environment
-    #configure-gtk
+    configure-gtk
     glib # gsettings
     dracula-theme # gtk theme
     gnome3.adwaita-icon-theme # default gnome cursors TODO
@@ -77,7 +79,8 @@ in
           # middle_emulation = "enabled"; default?
         };
       };
-      output."*" = { bg = "~/nixos/wallpapers/wallpaper.jpg fill"; };
+      # output."*" = { bg = "${toString ./wallpapers/sombrerogalaxy.jpg} fill"; };
+      output."*" = { bg = "~/nixos/wallpapers/sombrerogalaxy.jpg fill"; };
       terminal = "alacritty";
       menu = "bemenu-run";
       modifier = "Mod4"; # Super
@@ -88,9 +91,9 @@ in
         in
         lib.mkOptionDefault {
           "${mod}+q" = "kill";
-          "${mod}+c" = ''exec grim -g "$(slurp)" - | wl-copy -t image/png'';
+          "${mod}+c" = "exec grim -g $(slurp) - | wl-copy -t image/png";
           # TODO: configure swaylock-effects
-          "Ctrl+Alt+l" = "exec swaylock --screenshots --clock --indicator --effect-blur 7x5 --fade-in 0.2";
+          "Ctrl+Alt+l" = "exec ${swaylock}";
 
           # brightness keys
           "XF86MonBrightnessDown" = "exec light -U 10";
@@ -109,17 +112,13 @@ in
         };
       bars = [{
         command = "waybar";
-        # statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs";
-        # statusCommand = "i3status";
-        # position = "top";
       }];
     };
     # systemdIntegration = true;
-    # extraConfig = ''
-    #   exec dbus-sway-environment
-    # '';
-    #   exec configure-gtk
-    # '';
+    extraConfig = ''
+      exec dbus-sway-environment
+      exec configure-gtk
+    '';
     # TODO: check if this works
     extraSessionCommands = ''
       export NIXOS_OZONE_WL=1
@@ -133,6 +132,11 @@ in
 
   services = {
     # TODO: lock the screen after 5 minutes
+    #   swayidle -w \
+    # timeout 300 'swaylock -f -c 000000' \
+    # timeout 600 'swaymsg "output * dpms off"' \
+    # 	resume 'swaymsg "output * dpms on"' \
+    # before-sleep 'swaylock -f -c 000000'
     swayidle = {
       enable = true;
       timeouts = [{
@@ -145,20 +149,6 @@ in
 
 
   programs = {
-    # i3status = {
-    #   enable = true;
-    #   modules = {
-    #     "volume master" = {
-    #       position = 1;
-    #       settings = {
-    #         format = "♪ %volume";
-    #         format_muted = "♪ muted (%volume)";
-    #         device = "pulse";
-    #       };
-    #     };
-    #   };
-    # };
-
     waybar = {
       enable = true;
       # systemd.enable = true;
