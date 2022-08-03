@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, inputs, ... }: {
   imports =
     [
       ./hardware.nix
@@ -39,16 +39,12 @@
 
   time.timeZone = "Europe/Moscow";
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.utf8";
-    extraLocaleSettings.LC_TIME = "en_DK.UTF-8"; # ISO-8601 time
+    # ISO-8601 time NOTE: date --rfc-3339=seconds
+    extraLocaleSettings.LC_TIME = "en_DK.UTF-8";
   };
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
+  # console.keyMap = "us,ru";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -73,11 +69,7 @@
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
-    # autoUpgrade = {
-    #   enable = true;
-    #   flake = "~/nixos";
-    #   flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
-    # };
+    registry.nixpkgs.flake = inputs.nixpkgs; # set nixpkgs registry to global config
   };
 
   programs.fish.enable = true; # fish autocompletions
@@ -89,8 +81,7 @@
     ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # nix search nixpkgs wget
   environment.systemPackages = with pkgs; [
     # tools
     ffmpeg
@@ -108,21 +99,14 @@
     firefox-wayland
   ];
 
-  # enable flatpak for steam
+  # flatpaks: flatseal, steam
   services.flatpak.enable = true;
 
-  # TODO: move this to home-manager and enable hardware.opengl!
-  programs.steam = {
+  hardware.opengl = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    driSupport = true;
+    driSupport32Bit = true;
   };
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-runtime"
-  ];
 
   services.dbus.enable = true;
   xdg.portal = {

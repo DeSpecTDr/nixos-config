@@ -6,9 +6,11 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    utils.url = "flake-utils";
 
     nix-doom-emacs = {
       url = "github:nix-community/nix-doom-emacs";
@@ -25,7 +27,7 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    # nur.url = github:nix-community/NUR;
+    # nur.url = "nur";
 
     # agenix = {
     #   url = "github:ryantm/agenix";
@@ -46,7 +48,7 @@
         in
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = inputs;
+          specialArgs = { inherit inputs; };
           modules = [
             { nixpkgs.overlays = [ overlay-unstable ]; }
             ./configuration.nix

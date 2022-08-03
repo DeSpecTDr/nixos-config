@@ -20,6 +20,7 @@
     filelight # file size graph
     audacious # audio player
     texlive.combined.scheme-full # latex
+    joplin-desktop # todo list
 
     inputs.rnix-lsp.defaultPackage.${pkgs.system}
     unstable.hollywood
@@ -27,6 +28,7 @@
 
   services = {
     emacs.enable = true;
+    kdeconnect.enable = true;
   };
 
 
@@ -80,7 +82,7 @@
       };
     };
 
-    dircolors.enable = true;
+    # dircolors.enable = true;
 
     nix-index.enable = true; # nix-index, nix-locate
 
