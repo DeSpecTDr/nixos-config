@@ -4,7 +4,7 @@
     extraModulePackages = [ ];
     initrd = {
       availableKernelModules = [ "nvme" "xhci_pci" "ahci" "sd_mod" ];
-      kernelModules = [ "dm-snapshot" ];
+      kernelModules = [ "dm-snapshot" "amdgpu" ];
       luks.devices."cryptlvm" = {
         device = "/dev/disk/by-uuid/6e0be3f0-43a7-41e5-8f19-ec00981f014a";
         allowDiscards = true;

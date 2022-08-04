@@ -59,7 +59,7 @@
                 useUserPackages = true;
                 users.user = nixpkgs.lib.mkMerge [
                   nix-doom-emacs.hmModule
-                  (import ./home.nix) # (inputs // { inherit inputs; };)
+                  (import ./modules/home) # (inputs // { inherit inputs; };)
                 ];
                 extraSpecialArgs = { inherit inputs; };
               };

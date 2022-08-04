@@ -91,18 +91,18 @@ in
         in
         lib.mkOptionDefault {
           "${mod}+q" = "kill";
-          "${mod}+c" = "exec grim -g $(slurp) - | wl-copy -t image/png";
+          "${mod}+c" = "exec grim -g $(slurp) - | wl-copy -t image/png"; # works in terminal, but not as a keybinding
           # TODO: configure swaylock-effects
           "Ctrl+Alt+l" = "exec ${swaylock}";
 
           # brightness keys
-          "XF86MonBrightnessDown" = "exec light -U 10";
-          "XF86MonBrightnessUp" = "exec light -A 10";
+          XF86MonBrightnessDown = "exec light -U 10";
+          XF86MonBrightnessUp = "exec light -A 10";
 
           # audio keys
-          "XF86AudioRaiseVolume" = "exec pamixer -i 5";
-          "XF86AudioLowerVolume" = "exec pamixer -d 5";
-          "XF86AudioMute" = "exec pamixer -t";
+          XF86AudioRaiseVolume = "exec pamixer -i 5";
+          XF86AudioLowerVolume = "exec pamixer -d 5";
+          XF86AudioMute = "exec pamixer -t";
 
           # media keys
           XF86AudioPlay = "exec playerctl play-pause";

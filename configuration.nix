@@ -44,7 +44,6 @@
     # ISO-8601 time NOTE: date --rfc-3339=seconds
     extraLocaleSettings.LC_TIME = "en_DK.UTF-8";
   };
-  # console.keyMap = "us,ru";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -106,6 +105,10 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-opencl-runtime
+    ];
   };
 
   services.dbus.enable = true;
@@ -128,6 +131,11 @@
 
   # TODO: move this to sway (somehow)
   security.pam.services."swaylock".text = "auth include login";
+
+  # services.tlp.enable = true; # power manager
+  # powerManagement.powertop.enable = true;
+
+  # services.fwupd.enable = true; # firmware updates (there are none)
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

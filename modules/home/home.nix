@@ -1,8 +1,4 @@
 { config, pkgs, lib, inputs, ... }: {
-  imports = [
-    ./modules/home/sway.nix
-  ];
-
   home.packages = with pkgs; [
     ckan # ksp mod manager
     thunderbird-wayland # -wayland???
@@ -21,8 +17,9 @@
     audacious # audio player
     texlive.combined.scheme-full # latex
     joplin-desktop # todo list
+    polymc # minecraft
 
-    inputs.rnix-lsp.defaultPackage.${pkgs.system}
+    inputs.rnix-lsp.defaultPackage.${pkgs.system} # latest rnix-lsp
     unstable.hollywood
   ];
 
@@ -31,12 +28,11 @@
     kdeconnect.enable = true;
   };
 
-
   programs = {
     vscode = {
       enable = true;
       package = pkgs.vscodium;
-      extensions = with pkgs.vscode-extensions; [
+      extensions = with pkgs.unstable.vscode-extensions; [
         ms-toolsai.jupyter
         usernamehw.errorlens
         asvetliakov.vscode-neovim
@@ -47,39 +43,17 @@
         # arrterian.nix-env-selector
         jnoortheen.nix-ide
         ms-python.python
-        # TODO: add latex workshop, direnv
+        james-yu.latex-workshop
+        # TODO: add direnv
       ];
-    };
-
-    fish = {
-      enable = true;
-      shellAliases = {
-        nixupd = "nix flake update ~/nixos";
-        nixreb = "sudo nixos-rebuild switch --flake ~/nixos";
-        e = "nvim ";
-        se = "EDITOR=nvim sudo -e ";
-        checksystem = "SYSTEMD_LESS=FRXMK journalctl -b -x -p 5 && systemctl --failed";
-      };
-    };
-
-    zsh = {
-      enable = true;
-      enableCompletion = false; # enabled in oh-my-zsh
-      # initExtra = ''
-      #   test -f ~/.dir_colors && eval $(dircolors ~/.dir_colors)
-      # '';
-      # shellAliases = {
-      #   ne = "nix-env";
-      #   ni = "nix-env -iA";
-      #   no = "nixops";
-      #   ns = "nix-shell --pure";
-      #   please = "sudo";
+      # userSettings = {
+      #   "nix.enableLanguageServer" = true;
+      #   "editor.formatOnSave" = true;
+      #   "files.autoSave" = "afterDelay";
+      #   "vscode-neovim.neovimExecutablePaths.linux" = "nvim";
+      #   "vscode-neovim.mouseSelectionStartVisualMode" = true; # broken
+      #   "editor.acceptSuggestionOnEnter" = "off";
       # };
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" "systemd" "rsync" "kubectl" ];
-        theme = "terminalparty";
-      };
     };
 
     # dircolors.enable = true;
@@ -121,12 +95,11 @@
           '';
         }
       ];
-      # TODO set editor for sudo or use emacs+doas
     };
 
     doom-emacs = {
       enable = true;
-      doomPrivateDir = ./doom.d;
+      doomPrivateDir = ../../doom.d;
     };
 
     fzf.enable = true;
@@ -136,17 +109,11 @@
       enableAliases = true;
     };
 
-    direnv.enable = true;
-    direnv.nix-direnv.enable = true;
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
   };
 
   xdg.enable = true;
-
-  home = {
-    username = "user";
-    homeDirectory = "/home/user";
-    stateVersion = "22.05";
-  };
-
-  programs.home-manager.enable = true;
 }
