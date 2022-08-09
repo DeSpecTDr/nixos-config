@@ -45,8 +45,9 @@ in
 {
   home.packages = with pkgs; [
     # screenshots
-    grim
-    slurp
+    # grim
+    # slurp
+    flameshot
 
     bemenu # wayland clone of dmenu
     mako # notification system
@@ -91,7 +92,7 @@ in
         in
         lib.mkOptionDefault {
           "${mod}+q" = "kill";
-          "${mod}+c" = "exec grim -g $(slurp) - | wl-copy -t image/png"; # works in terminal, but not as a keybinding
+          "${mod}+c" = "exec flameshot gui";
           # TODO: configure swaylock-effects
           "Ctrl+Alt+l" = "exec ${swaylock}";
 
