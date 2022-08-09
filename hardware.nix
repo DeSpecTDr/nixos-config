@@ -46,7 +46,9 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/39448f34-d8c3-40e2-ab83-23d880489d62"; }];
 
-  # powerManagement.cpuFreqGovernor = "powersave"; or use power manager?
+  powerManagement.cpuFreqGovernor = "ondemand";
+  # services.upower.enable = true; # for safely hibernating when 2 mins of charge are left
+
   hardware = {
     cpu.amd.updateMicrocode = true;
     enableRedistributableFirmware = true; # TODO: disable and check what fails

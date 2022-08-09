@@ -7,7 +7,8 @@
     ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod;
+    kernelPackages = pkgs.linuxPackages_xanmod; # zen or lqx or xanmod_latest?
+    # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     kernel.sysctl = { "vm.swappiness" = 1; };
     loader = {
       timeout = 1;
@@ -15,12 +16,12 @@
         enable = true;
         efiSupport = true;
         device = "nodev";
-        gfxmodeEfi = "1024x768"; # TODO: still lags
-        configurationLimit = 20;
+        gfxmodeEfi = "1366x768"; # TODO: still lags
+        configurationLimit = 10;
       };
       efi = {
-        canTouchEfiVariables = true; # TODO: false?
-        # when grub gets luks2 support
+        canTouchEfiVariables = false; # TODO: false?
+        # waiting for grub 2.11 for argon2 support
         # efiSysMountPoint = "/boot/efi";
       };
     };
@@ -30,7 +31,8 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    useDHCP = false; # TODO: check if networkmanager sets dhcp itself
+    # networkmanager manages dhcp itself
+    # useDHCP = false;
     # interfaces = {
     #   enp3s0.useDHCP = true;
     #   wlp4s0.useDHCP = true;
@@ -46,8 +48,10 @@
   };
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
-  # services.printing.drivers = [ pkgs.gutenprint ];
+  # services.printing = {
+  #   enable = true;
+  #   drivers = [ pkgs.gutenprint ];
+  # };
 
   users.users.user = {
     isNormalUser = true;
@@ -118,6 +122,8 @@
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     gtkUsePortal = true;
   };
+
+  programs.dconf.enable = true;
 
   # Brightness
   programs.light.enable = true;

@@ -1,6 +1,6 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    pamixer # move to sway.nix as ${pkgs.pamixer}?
+  environment.systemPackages = with pkgs; [ # move to home?
+    pamixer
     pavucontrol
     helvum
     # paprefs

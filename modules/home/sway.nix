@@ -40,7 +40,7 @@ let
       ''; # TODO: check cursor theme
   };
 
-  swaylock = "swaylock --screenshots --clock --indicator --effect-blur 7x5 --fade-in 0.2";
+  swaylock = "swaylock -fF --screenshots --clock --indicator --effect-blur 7x5 --fade-in 0.2";
 in
 {
   home.packages = with pkgs; [
@@ -51,16 +51,16 @@ in
     bemenu # wayland clone of dmenu
     mako # notification system
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    swaybg # wallpapers
+    swaybg # wallpapers (try making animated?)
 
     playerctl
     swaylock-effects # check its repository later
 
-    dbus-sway-environment
-    configure-gtk
-    glib # gsettings
-    dracula-theme # gtk theme
-    gnome3.adwaita-icon-theme # default gnome cursors TODO
+    # dbus-sway-environment
+    # configure-gtk
+    # glib # gsettings
+    # dracula-theme # gtk theme
+    # gnome3.adwaita-icon-theme # default gnome cursors TODO
   ];
 
   wayland.windowManager.sway = {
@@ -115,10 +115,10 @@ in
       }];
     };
     # systemdIntegration = true;
-    extraConfig = ''
-      exec dbus-sway-environment
-      exec configure-gtk
-    '';
+    # extraConfig = ''
+    #   exec dbus-sway-environment
+    #   exec configure-gtk
+    # '';
     # TODO: check if this works
     extraSessionCommands = ''
       export NIXOS_OZONE_WL=1
@@ -139,11 +139,18 @@ in
     # before-sleep 'swaylock -f -c 000000'
     swayidle = {
       enable = true;
-      timeouts = [{
-        timeout = 300;
-        command = ''swaymsg "output * dpms off"'';
-        resumeCommand = ''swaymsg "output * dpms on"'';
-      }];
+      timeouts = [
+        {
+          timeout = 300;
+          command = swaylock;
+        }
+        {
+          timeout = 360;
+          command = ''swaymsg "output * dpms off"'';
+          resumeCommand = ''swaymsg "output * dpms on"'';
+        }
+      ];
+      events = [{ event = "before-sleep"; command = swaylock; }];
     };
   };
 

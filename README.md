@@ -1,3 +1,6 @@
-# My nixos config
-# TODO:
-- disable hdd
+# My [NixOS](https://nixos.org) config
+
+## TODO:
+
+- test
+

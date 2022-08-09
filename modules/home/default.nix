@@ -3,6 +3,7 @@
     ./home.nix
     ./sway.nix
     ./shells.nix
+    ./nvim.nix
   ];
 
   home = {
