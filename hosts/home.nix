@@ -1,4 +1,9 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, user, ... }: {
+  imports = [
+    ../modules/home/nvim.nix
+    ../modules/home/shells.nix
+  ];
+
   home.packages = with pkgs; [
     ckan # ksp mod manager
     thunderbird-wayland # -wayland???
@@ -19,9 +24,12 @@
     joplin-desktop # todo list
     polymc # minecraft
 
-    inputs.rnix-lsp.defaultPackage.${pkgs.system} # latest rnix-lsp
+    rnix-lsp # nix language server
     unstable.hollywood
     at-spi2-core # try deleting later
+
+    ranger # tui file manager
+    rustup # rust toolchain manager
   ];
 
   services = {
@@ -77,18 +85,20 @@
       # ];
     };
 
+    ncmpcpp.enable = true; # TODO: add mpc
+
     git = {
       enable = true;
       userName = "DeSpecTDr";
       userEmail = "73001251+DeSpecTDr@users.noreply.github.com";
       extraConfig = {
         init.defaultBranch = "main";
-      };
+      }; # TODO: add gpg key
     };
 
-    doom-emacs = {
+    doom-emacs = { # TODO: move to laptop
       enable = true;
-      doomPrivateDir = ../../doom.d;
+      doomPrivateDir = ../doom.d;
     };
 
     fzf.enable = true;
@@ -104,50 +114,13 @@
     };
   };
 
-  xdg.enable = true;
+  xdg.enable = true; # TODO: make Downloads into downloads
 
-  # TODO: https://libredd.it/r/NixOS/comments/nxnswt/cant_change_themes_on_wayland
-  # add at-spi2-core to packages?
-  gtk = {
-    enable = true;
-    font = {
-      name = "Noto Sans";
-      package = pkgs.noto-fonts;
-    };
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
-    # iconTheme = {
-    #   name = "Papirus-Dark-Maia"; # Candy and Tela also look good
-    #   package = pkgs.papirus-maia-icon-theme;
-    # };
-    # gtk3.extraConfig = {
-    #   gtk-application-prefer-dark-theme = true;
-    #   gtk-key-theme-name = "Emacs";
-    #   gtk-icon-theme-name = "Papirus-Dark-Maia";
-    #   gtk-cursor-theme-name = "capitaine-cursors";
-    # };
+  home = {
+    username = "${user}";
+    homeDirectory = "/home/${user}";
+    stateVersion = "22.05";
   };
-  # dconf.settings = {
-  #   "org/gnome/desktop/interface" = {
-  #     gtk-key-theme = "Emacs";
-  #     cursor-theme = "Capitaine Cursors";
-  #   };
-  # };
-  # xdg.systemDirs.data = [
-  #   "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
-  #   "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-  # ];
-  # gtk = {
-  #   enable = true;
-  #   # iconTheme = {
-  #   #   name = "";
-  #   #   package = pkgs.adwaita-icon-theme;
-  #   # };
-  #   theme = {
-  #     name = "Dracula";
-  #     package = pkgs.dracula-theme;
-  #   };
-  # };
+
+  programs.home-manager.enable = true;
 }

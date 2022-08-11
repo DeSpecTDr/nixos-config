@@ -1,10 +1,27 @@
-{ config, pkgs, lib, inputs, ... }: {
-  imports =
-    [
-      ./hardware.nix
-      ./modules/pipewire.nix
-      ./modules/greetd.nix
-    ];
+{ config, pkgs, lib, inputs, user, ... }: {
+  imports = [
+    ../modules/pipewire.nix
+  ];
+
+  # nix search nixpkgs wget
+  environment.systemPackages = with pkgs; [
+    # tools
+    ffmpeg
+    wget
+    btop
+    htop
+    neofetch
+    ripgrep
+    bat
+    du-dust
+    fd
+    smartmontools
+
+    # TODO: move this to home.nix
+    firefox-wayland
+
+    # TODO: add all packages here (but commented out)
+  ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod; # zen or lqx or xanmod_latest?
@@ -16,7 +33,7 @@
         enable = true;
         efiSupport = true;
         device = "nodev";
-        gfxmodeEfi = "1366x768"; # TODO: still lags
+        # gfxmodeEfi = "1366x768"; # TODO: still lags
         configurationLimit = 10;
       };
       efi = {
@@ -29,7 +46,6 @@
   };
 
   networking = {
-    hostName = "nixos";
     networkmanager.enable = true;
     # networkmanager manages dhcp itself
     # useDHCP = false;
@@ -53,7 +69,7 @@
   #   drivers = [ pkgs.gutenprint ];
   # };
 
-  users.users.user = {
+  users.users.${user} = {
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "video" ];
@@ -72,7 +88,7 @@
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
-    registry.nixpkgs.flake = inputs.nixpkgs; # set nixpkgs registry to global config
+    registry.nixpkgs.flake = inputs.nixpkgs; # TODO: do this with every input
   };
 
   programs.fish.enable = true; # fish autocompletions
@@ -84,46 +100,25 @@
     ];
   };
 
-  # nix search nixpkgs wget
-  environment.systemPackages = with pkgs; [
-    # tools
-    ffmpeg
-    wget
-    btop
-    htop
-    neofetch
-    ripgrep
-    bat
-    du-dust
-    fd
-    smartmontools
-
-    # TODO: move this to home.nix
-    firefox-wayland
-  ];
-
-  # flatpaks: flatseal, steam
+  # flatpaks: flatseal, steam, discord
   services.flatpak.enable = true;
 
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      rocm-opencl-icd
-      rocm-opencl-runtime
-    ];
   };
 
   services.dbus.enable = true;
   xdg.portal = {
+    # TODO: move to laptop
     enable = true;
     wlr.enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     gtkUsePortal = true;
   };
 
-  programs.dconf.enable = true;
+  programs.dconf.enable = true; # for gtk themes in home-manager
 
   # Brightness
   programs.light.enable = true;
@@ -135,11 +130,9 @@
     extraConfig = "Defaults insults";
   };
 
-  # TODO: move this to sway (somehow)
-  security.pam.services."swaylock".text = "auth include login";
-
   # services.tlp.enable = true; # power manager
   # powerManagement.powertop.enable = true;
+  # services.upower.enable = true; # for safely hibernating when 2 mins of charge are left
 
   # services.fwupd.enable = true; # firmware updates (there are none)
 
