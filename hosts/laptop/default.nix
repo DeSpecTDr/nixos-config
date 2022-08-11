@@ -12,5 +12,6 @@
   ];
 
   # TODO: move this to sway (somehow)
+  # TODO: check if it works without it
   security.pam.services."swaylock".text = "auth include login";
 }

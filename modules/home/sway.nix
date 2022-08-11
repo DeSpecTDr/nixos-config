@@ -44,24 +44,14 @@ let
 in
 {
   home.packages = with pkgs; [
-    # screenshots
-    # grim
-    # slurp
-    flameshot
+    flameshot # screenshots
+    playerctl
 
     bemenu # wayland clone of dmenu
     mako # notification system
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     swaybg # wallpapers (try making animated?)
-
-    playerctl
     swaylock-effects # check its repository later
-
-    # dbus-sway-environment
-    # configure-gtk
-    # glib # gsettings
-    # dracula-theme # gtk theme
-    # gnome3.adwaita-icon-theme # default gnome cursors TODO
   ];
 
   wayland.windowManager.sway = {
@@ -121,19 +111,10 @@ in
       ];
     };
     # systemdIntegration = true;
-    # extraConfig = ''
-    #   exec dbus-sway-environment
-    #   exec configure-gtk
-    # '';
-    # TODO: check if this works
     extraSessionCommands = ''
       export NIXOS_OZONE_WL=1
       export _JAVA_AWT_WM_NONREPARENTING=1
     '';
-    #   export XDG_SESSION_TYPE=wayland
-    #   export XDG_SESSION_DESKTOP=sway
-    #   export XDG_CURRENT_DESKTOP=sway
-    # '';
   };
 
   services = {
@@ -158,49 +139,4 @@ in
       # systemd.enable = true; TODO is systemd faster?
     };
   };
-
-  # TODO: https://libredd.it/r/NixOS/comments/nxnswt/cant_change_themes_on_wayland
-  # add at-spi2-core to packages?
-  gtk = {
-    enable = true;
-    font = {
-      name = "Noto Sans";
-      package = pkgs.noto-fonts;
-    };
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
-    # iconTheme = {
-    #   name = "Papirus-Dark-Maia"; # Candy and Tela also look good
-    #   package = pkgs.papirus-maia-icon-theme;
-    # };
-    # gtk3.extraConfig = {
-    #   gtk-application-prefer-dark-theme = true;
-    #   gtk-key-theme-name = "Emacs";
-    #   gtk-icon-theme-name = "Papirus-Dark-Maia";
-    #   gtk-cursor-theme-name = "capitaine-cursors";
-    # };
-  };
-  # dconf.settings = {
-  #   "org/gnome/desktop/interface" = {
-  #     gtk-key-theme = "Emacs";
-  #     cursor-theme = "Capitaine Cursors";
-  #   };
-  # };
-  # xdg.systemDirs.data = [
-  #   "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
-  #   "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-  # ];
-  # gtk = {
-  #   enable = true;
-  #   # iconTheme = {
-  #   #   name = "";
-  #   #   package = pkgs.adwaita-icon-theme;
-  #   # };
-  #   theme = {
-  #     name = "Dracula";
-  #     package = pkgs.dracula-theme;
-  #   };
-  # };
 }

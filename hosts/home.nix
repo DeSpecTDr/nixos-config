@@ -2,38 +2,36 @@
   imports = [
     ../modules/home/nvim.nix
     ../modules/home/shells.nix
+    ../modules/home/gtk.nix
   ];
 
   home.packages = with pkgs; [
-    ckan # ksp mod manager
-    thunderbird-wayland # -wayland???
+
     vlc
     mpv
-    element-desktop-wayland # -wayland???
-    keepassxc
-    alacritty
-    xfce.thunar
-    krita
-    stellarium
-    libreoffice
+
     tdesktop # telegram
+
+    keepassxc # password manager
+    krita
+    libreoffice
+    stellarium
     zathura # pdf viewer
-    filelight # file size graph
     audacious # audio player
-    texlive.combined.scheme-full # latex
     joplin-desktop # todo list
-    polymc # minecraft
 
     rnix-lsp # nix language server
-    unstable.hollywood
-    at-spi2-core # try deleting later
+    rustup # rust toolchain manager
 
     ranger # tui file manager
-    rustup # rust toolchain manager
+    xfce.thunar # gui file manager
+
+    # unstable.hollywood # hacker terminal
+    # filelight # file size graph
+    # ckan # ksp mod manager
   ];
 
   services = {
-    emacs.enable = true;
     kdeconnect.enable = true;
   };
 
@@ -42,6 +40,8 @@
     # librewolf = {
     #   enable = true;
     # };
+
+    alacritty.enable = true;
 
     vscode = {
       enable = true;
@@ -96,11 +96,6 @@
       }; # TODO: add gpg key
     };
 
-    doom-emacs = { # TODO: move to laptop
-      enable = true;
-      doomPrivateDir = ../doom.d;
-    };
-
     fzf.enable = true;
     zoxide.enable = true;
     exa = {
@@ -114,7 +109,7 @@
     };
   };
 
-  xdg.enable = true; # TODO: make Downloads into downloads
+  xdg.enable = true;
 
   home = {
     username = "${user}";

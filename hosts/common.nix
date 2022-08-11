@@ -17,9 +17,6 @@
     fd
     smartmontools
 
-    # TODO: move this to home.nix
-    firefox-wayland
-
     # TODO: add all packages here (but commented out)
   ];
 
