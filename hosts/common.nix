@@ -24,21 +24,6 @@
     kernelPackages = pkgs.linuxPackages_xanmod; # zen or lqx or xanmod_latest?
     # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     kernel.sysctl = { "vm.swappiness" = 1; };
-    loader = {
-      timeout = 1;
-      grub = {
-        enable = true;
-        efiSupport = true;
-        device = "nodev";
-        # gfxmodeEfi = "1366x768"; # TODO: still lags
-        configurationLimit = 10;
-      };
-      efi = {
-        canTouchEfiVariables = false; # TODO: false?
-        # waiting for grub 2.11 for argon2 support
-        # efiSysMountPoint = "/boot/efi";
-      };
-    };
     tmpOnTmpfs = true;
   };
 
@@ -108,9 +93,7 @@
 
   services.dbus.enable = true;
   xdg.portal = {
-    # TODO: move to laptop
     enable = true;
-    wlr.enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     gtkUsePortal = true;
   };
