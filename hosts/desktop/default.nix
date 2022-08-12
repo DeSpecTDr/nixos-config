@@ -12,6 +12,7 @@
       efiSupport = true;
       device = "nodev";
       configurationLimit = 10;
+      efiInstallAsRemovable = true; # false?
     };
     efi = {
       canTouchEfiVariables = false; # TODO: false?
@@ -23,5 +24,8 @@
     enable = true;
     layout = "us,ru";
     xkbOptions = "grp:alt_shift_toggle";
+    desktopManager = {
+      xfce.enable = true;
+    };
   };
 }
