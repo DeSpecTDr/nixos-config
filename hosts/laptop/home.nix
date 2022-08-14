@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }: {
   imports = [
     ../../modules/home/sway.nix
+    ../../modules/home/emacs.nix
   ];
 
   home.packages = with pkgs; [
@@ -9,10 +10,4 @@
     element-desktop-wayland # -wayland???
     thunderbird-wayland # -wayland???
   ];
-
-  services.emacs.enable = true;
-  programs.doom-emacs = {
-    enable = true;
-    doomPrivateDir = ../../doom.d;
-  };
 }
