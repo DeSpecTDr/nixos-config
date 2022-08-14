@@ -45,6 +45,12 @@
     extraLocaleSettings.LC_TIME = "en_DK.UTF-8";
   };
 
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "ru";
+    # useXkbConfig = true;
+  };
+
   # Enable CUPS to print documents.
   # services.printing = {
   #   enable = true;
@@ -94,14 +100,12 @@
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    gtkUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   programs.dconf.enable = true; # for gtk themes in home-manager
 
-  # Brightness
-  programs.light.enable = true;
+  programs.light.enable = true; # brightness
 
   security.sudo = {
     package = pkgs.sudo.override {
@@ -110,19 +114,16 @@
     extraConfig = "Defaults insults";
   };
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   # services.tlp.enable = true; # power manager
   # powerManagement.powertop.enable = true;
   # services.upower.enable = true; # for safely hibernating when 2 mins of charge are left
 
   # services.fwupd.enable = true; # firmware updates (there are none)
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

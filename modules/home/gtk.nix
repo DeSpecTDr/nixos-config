@@ -1,7 +1,13 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    (pkgs.writeShellScriptBin "lxapp" "GDK_BACKEND=x11 ${pkgs.lxappearance}/bin/lxappearance") # theme viewer
     at-spi2-core # idk what is it
+    colloid-gtk-theme
   ];
+
+  home.sessionVariables = {
+    GTK_USE_PORTAL = 1; # ??? TODO: https://github.com/NixOS/nixpkgs/pull/179204
+  };
 
   # https://libredd.it/r/NixOS/comments/nxnswt/cant_change_themes_on_wayland
   gtk = {

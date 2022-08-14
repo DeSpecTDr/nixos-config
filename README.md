@@ -36,5 +36,9 @@ autodefrag?
 
 # TODO:
 
-- test
+- check out qutebrowser
+- move more packages from system.environmentPackages to home
+- man generate caches?
+- try out home-manager standalone
+- move to codeberg
 

@@ -109,7 +109,13 @@
     };
   };
 
-  xdg.enable = true;
+  xdg = {
+    enable = true;
+    userDirs = {
+      enable = true;
+      # download = "$HOME/downloads";
+    };
+  };
 
   home = {
     username = "${user}";
