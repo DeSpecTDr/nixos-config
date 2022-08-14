@@ -1,6 +1,5 @@
 { lib, nixpkgs, overlays, home-manager, inputs, user }: {
-  nixos = lib.nixosSystem {
-    # TODO: change hostname from nixos to laptop
+  laptop = lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = { inherit inputs user; };
     modules = [

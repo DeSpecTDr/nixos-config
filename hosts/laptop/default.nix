@@ -4,10 +4,12 @@
     ../../modules/greetd.nix
   ];
 
-  networking.hostName = "nixos";
+  networking.hostName = "laptop";
 
+  boot.plymouth.enable = true;
+  boot.initrd.systemd.enable = true;
   boot.loader = {
-    timeout = 1;
+    timeout = 1; # TODO: make grub hidden by default
     grub = {
       enable = true;
       efiSupport = true;
@@ -16,7 +18,7 @@
       configurationLimit = 10;
     };
     efi = {
-      canTouchEfiVariables = false; # TODO: false?
+      canTouchEfiVariables = true; # TODO: false?
       # waiting for grub 2.11 for argon2 support
       # efiSysMountPoint = "/boot/efi";
     };

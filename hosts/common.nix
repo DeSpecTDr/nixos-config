@@ -78,7 +78,7 @@
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
-      nerdfonts # (nerdfonts.override { fonts = [ "Iosevka" "Meslo" ]; })
+      (nerdfonts.override { fonts = [ "Iosevka" "Meslo" ]; })
     ];
   };
 

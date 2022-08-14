@@ -46,7 +46,7 @@
     vscode = {
       enable = true;
       package = pkgs.vscodium;
-      extensions = with pkgs.unstable.vscode-extensions; [
+      extensions = with pkgs.vscode-extensions; [
         ms-toolsai.jupyter
         ms-python.python
 

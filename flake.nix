@@ -2,11 +2,11 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.05";
-    unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    # unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "home-manager/release-22.05";
+      url = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -20,9 +20,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nur = {
-    #   url = "nur";
-    # };
+    nur = {
+      url = "nur";
+    };
 
     # agenix = { # TODO: sops-nix instead?
     #   url = "github:ryantm/agenix";
@@ -36,7 +36,7 @@
 
       overlays = [
         (final: prev: with inputs; {
-          unstable = unstable.legacyPackages.${prev.system};
+          # unstable = unstable.legacyPackages.${prev.system};
           rnix-lsp = rnix-lsp.defaultPackage.${prev.system};
         })
       ];
