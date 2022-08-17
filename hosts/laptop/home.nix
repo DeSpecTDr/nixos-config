@@ -10,4 +10,6 @@
     element-desktop-wayland # -wayland???
     thunderbird-wayland # -wayland???
   ];
+  
+  programs.librewolf.package = pkgs.librewolf-wayland;
 }

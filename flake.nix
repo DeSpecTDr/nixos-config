@@ -20,9 +20,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "nur";
-    };
+    # nur = {
+    #   url = "nur";
+    # };
 
     # agenix = { # TODO: sops-nix instead?
     #   url = "github:ryantm/agenix";

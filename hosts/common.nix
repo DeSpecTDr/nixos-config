@@ -74,7 +74,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 7d";
     };
     registry.nixpkgs.flake = inputs.nixpkgs; # TODO: do this with every input
   };
@@ -82,9 +82,9 @@
   programs.fish.enable = true; # fish autocompletions
 
   fonts = {
-    enableDefaultFonts = true;
+    # enableDefaultFonts = true;
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "Iosevka" "Meslo" ]; })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
   };
 
@@ -114,12 +114,7 @@
     extraConfig = "Defaults insults";
   };
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  # services.tlp.enable = true; # power manager
+  # tlp.enable = true;
   # powerManagement.powertop.enable = true;
   # services.upower.enable = true; # for safely hibernating when 2 mins of charge are left
 

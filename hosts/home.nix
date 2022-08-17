@@ -3,6 +3,7 @@
     ../modules/home/nvim.nix
     ../modules/home/shells.nix
     ../modules/home/gtk.nix
+    ../modules/home/librewolf.nix
   ];
 
   home.packages = with pkgs; [
@@ -36,10 +37,9 @@
   };
 
   programs = {
-    # when it gets backported
-    # librewolf = {
-    #   enable = true;
-    # };
+    qutebrowser.enable = true;
+
+    gpg.enable = true;
 
     alacritty.enable = true;
 

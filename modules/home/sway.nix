@@ -25,10 +25,10 @@ in
           xkb_options = "grp:alt_shift_toggle";
         };
         "type:touchpad" = {
-          # dwt = "enabled";
+          dwt = "enabled";
           tap = "enabled";
           natural_scroll = "enabled";
-          # middle_emulation = "enabled"; default?
+          # middle_emulation = "enabled";
         };
       };
       output."*" = { bg = "${../../wallpapers/sombrerogalaxy.jpg} fill"; };
@@ -67,7 +67,7 @@ in
   };
 
   home.sessionVariables = {
-    NIXOS_OZONE_WL = 1;
+    NIXOS_OZONE_WL = "1"; # doesnt work
     _JAVA_AWT_WM_NONREPARENTING = 1;
   };
 
@@ -89,8 +89,9 @@ in
 
   programs = {
     waybar = {
+      # TODO: make smaller
       enable = true;
-      systemd.enable = true; # TODO is systemd faster?
+      # systemd.enable = true; # TODO systemd ~8-10 sec
     };
   };
 }
