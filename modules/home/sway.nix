@@ -25,13 +25,11 @@ in
           xkb_options = "grp:alt_shift_toggle";
         };
         "type:touchpad" = {
-          dwt = "enabled";
           tap = "enabled";
           natural_scroll = "enabled";
-          # middle_emulation = "enabled";
         };
       };
-      output."*" = { bg = "${../../wallpapers/sombrerogalaxy.jpg} fill"; };
+      output."*".bg = "${../../wallpapers/sombrerogalaxy.jpg} fill";
       terminal = "alacritty";
       menu = "bemenu-run";
       modifier = mod;
@@ -65,11 +63,12 @@ in
         { command = "${pkgs.autotiling}/bin/autotiling"; always = true; } # better tiling
       ];
     };
+    # seat = # TODO: add seat for cursor theme
     # systemdIntegration = true;
   };
 
   home.sessionVariables = {
-    NIXOS_OZONE_WL = "1"; # doesnt work
+    NIXOS_OZONE_WL = "1";
     _JAVA_AWT_WM_NONREPARENTING = 1;
   };
 

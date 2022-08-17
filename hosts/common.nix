@@ -1,6 +1,7 @@
 { config, pkgs, lib, inputs, user, ... }: {
   imports = [
     ../modules/pipewire.nix
+    ../modules/printer.nix
   ];
 
   # nix search nixpkgs wget
@@ -51,12 +52,6 @@
     # useXkbConfig = true;
   };
 
-  # Enable CUPS to print documents.
-  # services.printing = {
-  #   enable = true;
-  #   drivers = [ pkgs.gutenprint ];
-  # };
-
   users.users.${user} = {
     isNormalUser = true;
     shell = pkgs.fish;
@@ -76,7 +71,7 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    registry.nixpkgs.flake = inputs.nixpkgs; # TODO: do this with every input
+    registry.nixpkgs.flake = inputs.nixpkgs; # do this with other inputs? flake-utils?
   };
 
   programs.fish.enable = true; # fish autocompletions

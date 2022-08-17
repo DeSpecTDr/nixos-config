@@ -1,5 +1,12 @@
 # My [NixOS](https://nixos.org) config
 
+# TODO:
+
+- move more packages from system.environmentPackages to home
+- man generate caches?
+- try out home-manager standalone
+- move to codeberg?
+
 # Filesystem setup:
 
 ## laptop:
@@ -14,13 +21,13 @@ vg0-btrfs 100% @ @home @log @nix
 
 "compress-force=zstd:1" "noatime" "discard=async"
 
-TODO switch from 3 to 1
+TODO check ssd write/read speed
 
 may want to use ftrim instead of discard
 
 ## desktop:
 
-/boot FAT32 512M
+/efi FAT32 512M
 
 lvm
 
@@ -30,15 +37,6 @@ vg-btrfs 100% @ @home @log @nix @persist
 
 benchmark zstd -b1
 
-"compress-force=zstd:3" "noatime" check lsblk --discard
+"compress-force=zstd:3" "noatime"
 
 autodefrag? 
-
-# TODO:
-
-- check out qutebrowser
-- move more packages from system.environmentPackages to home
-- man generate caches?
-- try out home-manager standalone
-- move to codeberg
-

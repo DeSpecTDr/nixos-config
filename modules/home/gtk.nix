@@ -1,9 +1,7 @@
 { config, pkgs, ... }: {
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "lxapp" "GDK_BACKEND=x11 ${pkgs.lxappearance}/bin/lxappearance") # theme viewer
-    at-spi2-core # idk what is it
-    colloid-gtk-theme
-    whitesur-icon-theme
+    # at-spi2-core # idk what is it
   ];
 
   home.sessionVariables = {
@@ -28,7 +26,7 @@
     iconTheme = {
       name = "WhiteSur-dark";
       package = pkgs.whitesur-icon-theme;
-    }; # TODO: fix cursor
+    };
     # iconTheme = {
     #   name = "Papirus-Dark-Maia"; # Candy and Tela also look good
     #   package = pkgs.papirus-maia-icon-theme;
@@ -40,7 +38,7 @@
   };
   # dconf.settings = {
   #   "org/gnome/desktop/interface" = {
-  #     ...
+  #     gtk-application-prefer-dark-theme = true;
   #   };
   # };
   # qt = { # TODO: test with an actual QT app

@@ -1,7 +1,6 @@
 {
   boot = {
     kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
     initrd = {
       availableKernelModules = [ "nvme" "xhci_pci" "ahci" "sd_mod" ];
       kernelModules = [ "dm-snapshot" "amdgpu" ];
@@ -34,7 +33,7 @@
       device = "/dev/disk/by-uuid/5b7cad85-c8eb-47e4-8404-a318a23b1454";
       fsType = "btrfs";
       options = [ "subvol=@log" "compress-force=zstd:1" "noatime" "discard=async" ];
-    }; # TODO: check if logs are nodatacow
+    };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/5b7cad85-c8eb-47e4-8404-a318a23b1454";
@@ -43,8 +42,7 @@
     };
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/39448f34-d8c3-40e2-ab83-23d880489d62"; }];
+  swapDevices = [{ device = "/dev/disk/by-uuid/39448f34-d8c3-40e2-ab83-23d880489d62"; }];
 
   powerManagement.cpuFreqGovernor = "ondemand";
 
