@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }: {
   programs = {
+    bash.enable = true; # so home.sessionVariables work
+
     fish = {
       enable = true;
     };

@@ -58,7 +58,9 @@ in
         "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPrev" = "exec playerctl previous";
       };
-      bars = [ ];
+      bars = [{
+        command = "waybar";
+      }];
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; always = true; } # better tiling
       ];
@@ -91,7 +93,6 @@ in
     waybar = {
       # TODO: make smaller
       enable = true;
-      # systemd.enable = true; # TODO systemd ~8-10 sec
     };
   };
 }
