@@ -41,8 +41,9 @@
   #     gtk-application-prefer-dark-theme = true;
   #   };
   # };
-  # qt = { # TODO: test with an actual QT app
-  #   enable = true;
-  #   platformTheme = "gtk";
-  # };
+  qt = {
+    # TODO: test with an actual QT app
+    # enable = true;
+    platformTheme = "gtk";
+  };
 }

@@ -4,6 +4,7 @@
 
 - move more packages from system.environmentPackages to home
 - man generate caches?
+- zramSwap
 - try out home-manager standalone
 - move to codeberg?
 

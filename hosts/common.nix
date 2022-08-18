@@ -46,11 +46,12 @@
     extraLocaleSettings.LC_TIME = "en_DK.UTF-8";
   };
 
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "ru";
-    # useXkbConfig = true;
-  };
+  # console = {
+  #   # font = "Lat2-Terminus16";
+  #   font = "JetBrainsMono";
+  #   keyMap = "ru";
+  #   # useXkbConfig = true;
+  # };
 
   users.users.${user} = {
     isNormalUser = true;
@@ -72,6 +73,13 @@
       options = "--delete-older-than 7d";
     };
     registry.nixpkgs.flake = inputs.nixpkgs; # do this with other inputs? flake-utils?
+  };
+
+  system.autoUpgrade = {
+    # TODO: test if works
+    enable = true;
+    flake = "~/nixos";
+    flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
   };
 
   programs.fish.enable = true; # fish autocompletions

@@ -22,6 +22,7 @@
     joplin-desktop # todo list
 
     rnix-lsp # nix language server
+    # nil # another nix language server
     rustup # rust toolchain manager
 
     ranger # tui file manager

@@ -60,11 +60,10 @@ in
         command = "waybar";
       }];
       startup = [
-        { command = "${pkgs.autotiling}/bin/autotiling"; always = true; } # better tiling
+        { command = "autotiling"; always = true; } # better tiling
       ];
+      seat.seat0.xcursor_theme = config.gtk.cursorTheme.name;
     };
-    # seat = # TODO: add seat for cursor theme
-    # systemdIntegration = true;
   };
 
   home.sessionVariables = {
