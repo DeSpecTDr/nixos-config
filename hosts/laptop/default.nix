@@ -4,7 +4,13 @@
     ../../modules/greetd.nix
   ];
 
-  networking.hostName = "laptop";
+  networking = {
+    hostName = "laptop";
+    # interfaces = {
+    #   enp3s0.useDHCP = true;
+    #   wlp4s0.useDHCP = true;
+    # };
+  };
 
   boot.loader = {
     timeout = 1; # TODO: make grub hidden by default
@@ -14,11 +20,12 @@
       device = "nodev";
       # gfxmodeEfi = "1366x768"; # TODO: still lags
       configurationLimit = 10;
+      efiInstallAsRemovable = true; # install to hardcoded EFI location
     };
     efi = {
-      canTouchEfiVariables = true; # TODO: false?
+      canTouchEfiVariables = false; # TODO: false?
       # waiting for grub 2.11 for argon2 support
-      # efiSysMountPoint = "/boot/efi";
+      # efiSysMountPoint = "/efi";
     };
   };
 

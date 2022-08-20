@@ -3,7 +3,13 @@
     ./hardware.nix
   ];
 
-  networking.hostName = "desktop";
+  networking = {
+    hostName = "desktop";
+    # interfaces = {
+    #   eno1.useDHCP = true;
+    #   wlp5s0.useDHCP = true;
+    # };
+  };
 
   boot.loader = {
     timeout = 1;
@@ -12,10 +18,10 @@
       efiSupport = true;
       device = "nodev";
       configurationLimit = 10;
-      efiInstallAsRemovable = true; # false?
+      efiInstallAsRemovable = true; # install to hardcoded EFI location
     };
     efi = {
-      canTouchEfiVariables = false; # TODO: false?
+      canTouchEfiVariables = false;
       efiSysMountPoint = "/efi";
     };
   };

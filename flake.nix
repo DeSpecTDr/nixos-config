@@ -20,10 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nil = {
-      url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nil = {
+    #   url = "github:oxalica/nil";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # nur = {
     #   url = "nur";
@@ -43,7 +43,7 @@
         (final: prev: with inputs; {
           # unstable = unstable.legacyPackages.${prev.system};
           rnix-lsp = rnix-lsp.defaultPackage.${prev.system};
-          nil = nil.packages.${prev.system}.default; # check it later
+          # nil = nil.packages.${prev.system}.default; # check it later
         })
       ];
     in

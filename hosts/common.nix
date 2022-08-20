@@ -26,18 +26,13 @@
     # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     kernel.sysctl = { "vm.swappiness" = 1; };
     tmpOnTmpfs = true;
-    initrd.systemd.enable = true;
-    plymouth.enable = true;
+    # initrd.systemd.enable = true;
+    # plymouth.enable = true;
   };
 
   networking = {
     networkmanager.enable = true;
-    # networkmanager manages dhcp itself
-    # useDHCP = false;
-    # interfaces = {
-    #   enp3s0.useDHCP = true;
-    #   wlp4s0.useDHCP = true;
-    # };
+    # useDHCP = false; networkmanager manages dhcp itself
   };
 
   time.timeZone = "Europe/Moscow";
