@@ -1,7 +1,6 @@
 { config, pkgs, ... }: {
   home.packages = with pkgs; [
-    (pkgs.writeShellScriptBin "lxapp" "GDK_BACKEND=x11 ${pkgs.lxappearance}/bin/lxappearance") # theme viewer
-    # at-spi2-core # idk what is it
+    (pkgs.writeShellScriptBin "lxappearance" "GDK_BACKEND=x11 ${pkgs.lxappearance}/bin/lxappearance") # theme viewer
   ];
 
   home.sessionVariables = {
@@ -42,8 +41,7 @@
   #   };
   # };
   qt = {
-    # TODO: test with an actual QT app
-    # enable = true;
+    enable = true;
     platformTheme = "gtk";
   };
 }

@@ -26,6 +26,8 @@
     # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     kernel.sysctl = { "vm.swappiness" = 1; };
     tmpOnTmpfs = true;
+    initrd.systemd.enable = true;
+    plymouth.enable = true;
   };
 
   networking = {
@@ -62,11 +64,11 @@
 
   nix = {
     package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      keep-outputs = true
-    '';
-    settings.auto-optimise-store = true;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      keep-outputs = true;
+      auto-optimise-store = true;
+    };
     gc = {
       automatic = true;
       dates = "weekly";
@@ -75,15 +77,6 @@
     registry.nixpkgs.flake = inputs.nixpkgs; # do this with other inputs? flake-utils?
   };
 
-  system.autoUpgrade = {
-    # TODO: test if works
-    enable = true;
-    flake = "~/nixos";
-    flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
-  };
-
-  programs.fish.enable = true; # fish autocompletions
-
   fonts = {
     # enableDefaultFonts = true;
     fonts = with pkgs; [
@@ -91,24 +84,29 @@
     ];
   };
 
-  # flatpaks: flatseal, steam, discord
-  services.flatpak.enable = true;
-
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
 
-  services.dbus.enable = true;
+  services = {
+    flatpak.enable = true; # flatseal, steam, discord
+    udisks2.enable = true; # TODO: automount usb drives
+    dbus.enable = true;
+  };
+
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  programs.dconf.enable = true; # for gtk themes in home-manager
-
-  programs.light.enable = true; # brightness
+  programs = {
+    fish.enable = true; # fish autocompletions
+    dconf.enable = true; # for gtk themes in home-manager
+    light.enable = true; # brightness
+    gnome-disks.enable = true; # for disk benchmarking
+  };
 
   security.sudo = {
     package = pkgs.sudo.override {

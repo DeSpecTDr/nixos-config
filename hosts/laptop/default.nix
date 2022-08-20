@@ -6,8 +6,6 @@
 
   networking.hostName = "laptop";
 
-  boot.plymouth.enable = true;
-  boot.initrd.systemd.enable = true;
   boot.loader = {
     timeout = 1; # TODO: make grub hidden by default
     grub = {
@@ -22,6 +20,10 @@
       # waiting for grub 2.11 for argon2 support
       # efiSysMountPoint = "/boot/efi";
     };
+  };
+
+  zramSwap = {
+    enable = true;
   };
 
   xdg.portal.wlr.enable = true;

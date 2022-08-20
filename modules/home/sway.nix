@@ -15,6 +15,8 @@ in
     swaylock-effects # check its repository later
   ];
 
+  # TODO: mako config
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -78,7 +80,7 @@ in
         { timeout = 300; command = "${swaylock} --grace 5"; }
         {
           timeout = 360;
-          command = ''swaymsg "output * dpms off"'';
+          command = ''swaymsg "output * dpms off"''; # TODO: doesn't work
           resumeCommand = ''swaymsg "output * dpms on"'';
         }
       ];

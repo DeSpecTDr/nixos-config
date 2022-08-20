@@ -20,7 +20,7 @@ vg0-swap 9G
 
 vg0-btrfs 100% @ @home @log @nix
 
-"compress-force=zstd:1" "noatime" "discard=async"
+"compress-force=zstd:2" "noatime" "discard=async"
 
 TODO check ssd write/read speed
 
