@@ -4,6 +4,7 @@
     ../modules/home/shells.nix
     ../modules/home/gtk.nix
     ../modules/home/librewolf.nix
+    ../modules/home/vscodium.nix
   ];
 
   home.packages = with pkgs; [
@@ -42,40 +43,11 @@
   };
 
   programs = {
-    qutebrowser.enable = true;
+    man.generateCaches = true;
 
     gpg.enable = true;
 
     alacritty.enable = true;
-
-    vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-      extensions = with pkgs.vscode-extensions; [
-        ms-toolsai.jupyter
-        ms-python.python
-
-        matklad.rust-analyzer
-        vadimcn.vscode-lldb
-        serayuzgur.crates
-        tamasfe.even-better-toml
-
-        jnoortheen.nix-ide
-        # TODO: add mkhl.direnv
-
-        james-yu.latex-workshop
-        usernamehw.errorlens
-        asvetliakov.vscode-neovim
-      ];
-      # userSettings = {
-      #   "nix.enableLanguageServer" = true;
-      #   "editor.formatOnSave" = true;
-      #   "files.autoSave" = "afterDelay";
-      #   "vscode-neovim.neovimExecutablePaths.linux" = "nvim";
-      #   "vscode-neovim.mouseSelectionStartVisualMode" = true;
-      #   "editor.acceptSuggestionOnEnter" = "off";
-      # };
-    };
 
     # dircolors.enable = true;
 

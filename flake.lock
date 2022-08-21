@@ -265,11 +265,11 @@
         "ws-butler": "ws-butler"
       },
       "locked": {
-        "lastModified": 1660874280,
-        "narHash": "sha256-Adnmpi9eB2R2non0SnwPlo5pe1cJ8DYMnrAMV8weflc=",
+        "lastModified": 1660946298,
+        "narHash": "sha256-XzIcFkcTsScS7blStWdPNXJ74FYPRbgTc30NvKeFzu8=",
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "fcfde62f1955f5824716f73f2979293f2ed1a096",
+        "rev": "b62e04967ad303f0395025d5f2340beef8a67a57",
         "type": "github"
       },
       "original": {
@@ -296,11 +296,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1660819943,
-        "narHash": "sha256-TRZV/mlW1eYuojqDC3ueYWj7jsTKXJCtyMLNYX/Ybtw=",
+        "lastModified": 1660998696,
+        "narHash": "sha256-N5eDv9THZz5pFn7NR1swaFrAJYByfrA5gU5L7JONItA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8ea014acc33da95ea56c902229957d8225005163",
+        "rev": "13711c9ab9f5a160a44affb7a6221be53318a873",
         "type": "github"
       },
       "original": {
