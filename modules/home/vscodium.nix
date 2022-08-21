@@ -18,18 +18,18 @@
       usernamehw.errorlens
       asvetliakov.vscode-neovim
     ];
-    userSettings = {
-      "nix.enableLanguageServer" = true;
-      "editor.formatOnSave" = true;
-      "files.autoSave" = "afterDelay";
-      "vscode-neovim.neovimExecutablePaths.linux" = "nvim";
-      "editor.acceptSuggestionOnEnter" = "off";
-    };
-    keybindings = [
-      {
-        key = "ctrl+shift+c";
-        command = "editor.action.clipboardCopyAction";
-      }
-    ];
+    # userSettings = {
+    #   "nix.enableLanguageServer" = true;
+    #   "editor.formatOnSave" = true;
+    #   "files.autoSave" = "afterDelay";
+    #   "vscode-neovim.neovimExecutablePaths.linux" = "nvim";
+    #   "editor.acceptSuggestionOnEnter" = "off";
+    # };
+    # keybindings = [
+    #   {
+    #     key = "ctrl+shift+c";
+    #     command = "editor.action.clipboardCopyAction";
+    #   }
+    # ];
   };
 }
