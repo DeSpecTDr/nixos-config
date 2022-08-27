@@ -16,6 +16,7 @@
     mpv
 
     tdesktop # telegram
+    element-desktop # matrix
 
     keepassxc # password manager
     krita

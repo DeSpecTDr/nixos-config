@@ -26,6 +26,8 @@
     };
   };
 
+  nixpkgs.config.allowUnfree = true; # TODO: only whitelist nvidia driver
+
   services.xserver = {
     enable = true;
     layout = "us,ru";
@@ -33,5 +35,6 @@
     desktopManager = {
       xfce.enable = true;
     };
+    videoDrivers = [ "nvidia" ];
   };
 }

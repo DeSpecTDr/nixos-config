@@ -4,9 +4,10 @@
     pavucontrol
     helvum
     # paprefs
-    # easyeffects
-    # noisetorch
+    easyeffects
   ];
+
+  programs.noisetorch.enable = true; # noise suppression
 
   # Enable sound with pipewire.
   security.rtkit.enable = true;
