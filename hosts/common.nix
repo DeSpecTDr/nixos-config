@@ -26,8 +26,6 @@
     # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     kernel.sysctl = { "vm.swappiness" = 1; };
     tmpOnTmpfs = true;
-    # initrd.systemd.enable = true;
-    # plymouth.enable = true;
   };
 
   networking = {

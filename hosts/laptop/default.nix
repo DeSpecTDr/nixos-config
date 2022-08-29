@@ -27,6 +27,8 @@
       # waiting for grub 2.11 for argon2 support
       # efiSysMountPoint = "/efi";
     };
+    initrd.systemd.enable = true;
+    plymouth.enable = true;
   };
 
   zramSwap = {
