@@ -26,6 +26,7 @@
     okular # pdf viewer
     audacious # audio player
     joplin-desktop # todo list
+    qbittorrent
 
     rnix-lsp # nix language server
     # nil # another nix language server
@@ -34,9 +35,11 @@
     ranger # tui file manager
     xfce.thunar # gui file manager
 
-    # unstable.hollywood # hacker terminal
+    hollywood
     # filelight # file size graph
     # ckan # ksp mod manager
+
+    # wezterm # terminal (check out later)
   ];
 
   services = {
@@ -49,6 +52,7 @@
     gpg.enable = true;
 
     alacritty.enable = true;
+    kitty.enable = true;
 
     # dircolors.enable = true;
 

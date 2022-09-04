@@ -45,4 +45,8 @@
   # TODO: move this to sway (somehow)
   # TODO: check if it works without it
   security.pam.services."swaylock".text = "auth include login";
+
+  # tlp.enable = true;
+  # powerManagement.powertop.enable = true;
+  # services.upower.enable = true; # for safely hibernating when 2 mins of charge are left
 }

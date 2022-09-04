@@ -67,6 +67,7 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # fix nix-index
     registry.nixpkgs.flake = inputs.nixpkgs; # do this with other inputs? flake-utils?
   };
 
@@ -87,6 +88,8 @@
     flatpak.enable = true; # flatseal, steam, discord
     udisks2.enable = true; # TODO: automount usb drives
     dbus.enable = true;
+    # fwupd.enable = true; # firmware updates
+    # openssh.enable = true;
   };
 
   xdg.portal = {
@@ -99,6 +102,7 @@
     dconf.enable = true; # for gtk themes in home-manager
     light.enable = true; # brightness
     gnome-disks.enable = true; # for disk benchmarking
+    kdeconnect.enable = true;
   };
 
   security.sudo = {
@@ -107,15 +111,6 @@
     };
     extraConfig = "Defaults insults";
   };
-
-  # tlp.enable = true;
-  # powerManagement.powertop.enable = true;
-  # services.upower.enable = true; # for safely hibernating when 2 mins of charge are left
-
-  # services.fwupd.enable = true; # firmware updates (there are none)
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   system.stateVersion = "22.05";
 }

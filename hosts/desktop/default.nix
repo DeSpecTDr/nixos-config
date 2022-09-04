@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }: {
   imports = [
     ./hardware.nix
+    ../../modules/syncthing.nix
   ];
 
   networking = {
@@ -9,6 +10,17 @@
     #   eno1.useDHCP = true;
     #   wlp5s0.useDHCP = true;
     # };
+  };
+
+  services.yggdrasil = {
+    enable = true;
+    persistentKeys = true;
+    settings = {
+      Peers = [
+        "tls://ygg.averyan.ru:8362"
+      ];
+      # IfName = "ygg0";
+    };
   };
 
   boot.loader = {
