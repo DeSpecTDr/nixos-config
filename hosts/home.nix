@@ -40,6 +40,8 @@
     # ckan # ksp mod manager
 
     # wezterm # terminal (check out later)
+    flameshot
+    playerctl
   ];
 
   services = {

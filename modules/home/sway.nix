@@ -5,9 +5,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    flameshot # screenshots
-    playerctl
-
     bemenu # wayland clone of dmenu
     mako # notification system
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
@@ -22,7 +19,7 @@ in
     wrapperFeatures.gtk = true;
     config = {
       input = {
-        "1:1:AT_Translated_Set_2_keyboard" = {
+        "type:keyboard" = {
           xkb_layout = "us,ru";
           xkb_options = "grp:alt_shift_toggle";
         };
@@ -32,7 +29,7 @@ in
         };
       };
       output."*".bg = "${../../wallpapers/sombrerogalaxy.jpg} fill";
-      terminal = "alacritty";
+      terminal = "kitty";
       menu = "bemenu-run";
       modifier = mod;
       bindkeysToCode = true;

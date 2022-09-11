@@ -44,9 +44,37 @@
     enable = true;
     layout = "us,ru";
     xkbOptions = "grp:alt_shift_toggle";
+    # desktopManager = {
+    #   xfce.enable = true;
+    # };
+    windowManager.i3.enable = true;
     desktopManager = {
-      xfce.enable = true;
+      xterm.enable = false;
+    };
+    displayManager = {
+      lightdm.enable = true;
+      defaultSession = "none+i3";
     };
     videoDrivers = [ "nvidia" ];
+  };
+
+  # environment.sessionVariables = {
+  #   WLR_DRM_NO_ATOMIC = "1";
+  #   WLR_NO_HARDWARE_CURSORS = "1";
+  #   LIBVA_DRIVER_NAME = "nvidia";
+  #   # MOZ_DISABLE_RDD_SANDBOX = "1";
+  #   EGL_PLATFORM = "wayland";
+  # };
+
+  hardware = {
+    # opengl.enable = true;
+    opengl.extraPackages = [ pkgs.nvidia-vaapi-driver ];
+    # nvidia = {
+    #   # open = true;
+    #   modesetting.enable = true;
+    #   # nvidiaSettings = false;
+    #   # package = nvidiaPkg;
+    #   powerManagement.enable = false;
+    # };
   };
 }
