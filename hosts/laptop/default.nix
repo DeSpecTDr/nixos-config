@@ -12,20 +12,22 @@
     # };
   };
 
-  boot.loader = {
-    timeout = 1; # TODO: make grub hidden by default
-    grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
-      # gfxmodeEfi = "1366x768"; # TODO: still lags
-      configurationLimit = 10;
-      efiInstallAsRemovable = true; # install to hardcoded EFI location
-    };
-    efi = {
-      canTouchEfiVariables = false; # TODO: false?
-      # waiting for grub 2.11 for argon2 support
-      # efiSysMountPoint = "/efi";
+  boot = {
+    loader = {
+      timeout = 1; # TODO: make grub hidden by default
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        # gfxmodeEfi = "1366x768"; # TODO: still lags
+        configurationLimit = 10;
+        efiInstallAsRemovable = true; # install to hardcoded EFI location
+      };
+      efi = {
+        canTouchEfiVariables = false; # TODO: false?
+        # waiting for grub 2.11 for argon2 support
+        # efiSysMountPoint = "/efi";
+      };
     };
     initrd.systemd.enable = true;
     plymouth.enable = true;
