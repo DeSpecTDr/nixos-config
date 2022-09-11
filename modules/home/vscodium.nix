@@ -12,7 +12,7 @@
       tamasfe.even-better-toml
 
       jnoortheen.nix-ide
-      # TODO: add mkhl.direnv
+      mkhl.direnv
 
       james-yu.latex-workshop
       usernamehw.errorlens

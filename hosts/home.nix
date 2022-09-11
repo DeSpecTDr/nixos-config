@@ -22,10 +22,11 @@
     krita
     libreoffice
     stellarium
-    # zathura # pdf viewer (broken) change to okular?
+    zathura # pdf viewer (broken) change to okular?
     okular # pdf viewer
     audacious # audio player
     joplin-desktop # todo list
+    logseq # todo list
     qbittorrent
 
     rnix-lsp # nix language server
@@ -42,10 +43,21 @@
     # wezterm # terminal (check out later)
     flameshot
     playerctl
+
+    texlive.combined.scheme-full # latex
   ];
 
   services = {
     kdeconnect.enable = true;
+    gammastep = {
+      enable = true;
+      temperature = {
+        day = 6500;
+        night = 2300;
+      };
+      dawnTime = "6:00-7:45";
+      duskTime = "18:35-20:15";
+    };
   };
 
   programs = {

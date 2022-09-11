@@ -33,6 +33,8 @@
     plymouth.enable = true;
   };
 
+  # services.geoclue2.enable = true;
+
   zramSwap = {
     enable = true;
   };
