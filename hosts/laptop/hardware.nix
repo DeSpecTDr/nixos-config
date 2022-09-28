@@ -4,9 +4,15 @@
     initrd = {
       availableKernelModules = [ "nvme" "xhci_pci" "ahci" "sd_mod" ];
       kernelModules = [ "dm-snapshot" "amdgpu" ];
-      luks.devices."cryptlvm" = {
-        device = "/dev/disk/by-uuid/6e0be3f0-43a7-41e5-8f19-ec00981f014a";
-        allowDiscards = true;
+      luks.devices = {
+        "cryptlvm" = {
+          device = "/dev/disk/by-uuid/6e0be3f0-43a7-41e5-8f19-ec00981f014a";
+          allowDiscards = true;
+        };
+        # "crypthdd" = {
+        #   device = "/dev/disk/by-uuid/dd2767a3-d55e-4f7d-8539-33758abab6ea";
+        #   keyFile = "/hdd.key";
+        # };
       };
     };
   };
@@ -40,6 +46,12 @@
       fsType = "btrfs";
       options = [ "subvol=@nix" "compress-force=zstd:2" "noatime" "discard=async" ];
     };
+
+    # "/hdd" = {
+    #   device = "/dev/disk/by-uuid/69d77948-40a2-486a-9ae0-55ed4b651467";
+    #   fsType = "btrfs";
+    #   options = [ "subvol=@data" "compress-force=zstd:4" "noatime" ];
+    # };
   };
 
   swapDevices = [{ device = "/dev/disk/by-uuid/39448f34-d8c3-40e2-ab83-23d880489d62"; }];

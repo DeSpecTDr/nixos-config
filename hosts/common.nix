@@ -4,6 +4,8 @@
     ../modules/printer.nix
   ];
 
+  boot.supportedFilesystems = [ "ntfs" ]; # for external hdd
+
   # nix search nixpkgs wget
   environment.systemPackages = with pkgs; [
     # tools
@@ -56,7 +58,6 @@
   };
 
   nix = {
-    package = pkgs.nixFlakes;
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       keep-outputs = true;
@@ -72,7 +73,7 @@
   };
 
   fonts = {
-    # enableDefaultFonts = true;
+    enableDefaultFonts = true;
     fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
@@ -105,11 +106,14 @@
     kdeconnect.enable = true;
   };
 
-  security.sudo = {
-    package = pkgs.sudo.override {
-      withInsults = true;
+  security = {
+    # polkit.enable = true;
+    sudo = {
+      package = pkgs.sudo.override {
+        withInsults = true;
+      };
+      extraConfig = "Defaults insults";
     };
-    extraConfig = "Defaults insults";
   };
 
   system.stateVersion = "22.05";

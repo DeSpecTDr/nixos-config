@@ -48,15 +48,15 @@
   ];
 
   services = {
-    kdeconnect.enable = true;
+    # kdeconnect.enable = true;
     gammastep = {
       enable = true;
       temperature = {
         day = 6500;
-        night = 2300;
+        night = 1200;
       };
       dawnTime = "6:00-7:45";
-      duskTime = "18:35-20:15";
+      duskTime = "20:35-22:15";
     };
   };
 
@@ -67,6 +67,8 @@
 
     alacritty.enable = true;
     kitty.enable = true;
+
+    starship.enable = true;
 
     # dircolors.enable = true;
 

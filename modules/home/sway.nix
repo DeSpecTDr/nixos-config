@@ -26,6 +26,7 @@ in
         "type:touchpad" = {
           tap = "enabled";
           natural_scroll = "enabled";
+          dwt = "disabled";
         };
       };
       output."*".bg = "${../../wallpapers/sombrerogalaxy.jpg} fill";
@@ -59,7 +60,8 @@ in
         command = "waybar";
       }];
       startup = [
-        { command = "autotiling"; always = true; } # better tiling
+        { command = "${pkgs.autotiling}/bin/autotiling"; always = true; } # better tiling
+        { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; always = true; }
       ];
       seat.seat0.xcursor_theme = config.gtk.cursorTheme.name;
     };

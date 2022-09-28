@@ -1,6 +1,7 @@
 {
   # Plugins:
   # Vimium-FF
+  # Libredirect
   # uBlock Origin:
   # fanboy's annoyance TODO makes browser more unique?
   # advanced user enabled

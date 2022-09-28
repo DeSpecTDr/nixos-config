@@ -4,6 +4,9 @@
 
     fish = {
       enable = true;
+      shellInit = ''
+        set fish_greeting # Remove welcome message
+      '';
     };
 
     zsh = {
