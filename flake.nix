@@ -33,6 +33,8 @@
     #   url = "github:ryantm/agenix";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    # webcord.url = "github:fufexan/webcord-flake";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, ... }:
@@ -42,7 +44,8 @@
       overlays = [
         (final: prev: with inputs; {
           # unstable = unstable.legacyPackages.${prev.system};
-          rnix-lsp = rnix-lsp.defaultPackage.${prev.system};
+          # rnix-lsp = rnix-lsp.defaultPackage.${prev.system};
+          # webcord = webcord.packages.${prev.system}.default;
           # nil = nil.packages.${prev.system}.default; # check it later
         })
       ];

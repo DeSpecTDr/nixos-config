@@ -85,6 +85,7 @@
     driSupport32Bit = true;
   };
 
+  # systemd.services."<service-name>".wantedBy = lib.mkForce [ ];
   services = {
     flatpak.enable = true; # flatseal, steam, discord
     udisks2.enable = true; # TODO: automount usb drives

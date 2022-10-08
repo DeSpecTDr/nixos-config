@@ -28,10 +28,13 @@
     joplin-desktop # todo list
     logseq # todo list
     qbittorrent
+    # lapce
 
     rnix-lsp # nix language server
     # nil # another nix language server
     rustup # rust toolchain manager
+    # rust-analyzer
+    # taplo
 
     ranger # tui file manager
     xfce.thunar # gui file manager
@@ -69,6 +72,8 @@
     kitty.enable = true;
 
     starship.enable = true;
+
+    # helix.enable = true;
 
     # dircolors.enable = true;
 
