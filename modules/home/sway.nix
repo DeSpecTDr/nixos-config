@@ -21,7 +21,7 @@ in
       input = {
         "type:keyboard" = {
           xkb_layout = "us,ru";
-          xkb_options = "grp:ctrl_shift_toggle";
+          xkb_options = "grp:alt_shift_toggle";
         };
         "type:touchpad" = {
           tap = "enabled";
