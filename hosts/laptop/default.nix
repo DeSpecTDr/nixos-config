@@ -12,6 +12,8 @@
     # };
   };
 
+  virtualisation.libvirtd.enable = true;
+
   boot = {
     loader = {
       timeout = 1; # TODO: make grub hidden by default
@@ -42,7 +44,10 @@
         echo '--- OWNERSHIP NOTICE ---'
       '';
     };
-    plymouth.enable = true;
+    plymouth = {
+      enable = true;
+      theme = "breeze";
+    };  
   };
 
   # services.journald.console = "/dev/tty12";

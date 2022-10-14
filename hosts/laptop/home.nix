@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     firefox-wayland # TODO: switch to librewolf
     thunderbird-wayland # -wayland???
+    virt-manager
   ];
   
   programs.librewolf.package = pkgs.librewolf-wayland;

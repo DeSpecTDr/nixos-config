@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }: {
   imports = [
     ./hardware.nix
-    ../../modules/syncthing.nix
   ];
 
   networking = {

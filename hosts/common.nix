@@ -2,6 +2,7 @@
   imports = [
     ../modules/pipewire.nix
     ../modules/printer.nix
+    ../modules/syncthing.nix
   ];
 
   boot.supportedFilesystems = [ "ntfs" ]; # for external hdd
@@ -53,7 +54,7 @@
   users.users.${user} = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
     initialPassword = "notmyrealpassword";
   };
 

@@ -48,6 +48,8 @@
     playerctl
 
     texlive.combined.scheme-full # latex
+    hdparm
+    hwinfo
   ];
 
   services = {
