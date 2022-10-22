@@ -19,6 +19,8 @@
       package = pkgs.noto-fonts;
     };
     theme = {
+      # name = "gruvbox-dark";
+      # package = pkgs.gruvbox-dark-gtk;
       name = "Colloid-Dark";
       package = pkgs.colloid-gtk-theme;
     };

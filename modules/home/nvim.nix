@@ -1,4 +1,5 @@
 # nvim config from MatthiasBenaets
+# todo: https://github.com/figsoda/dotfiles/blob/main/lib/nvim/default.nix
 
 { pkgs, ... }:
 
@@ -8,6 +9,11 @@
       enable = true;
 
       plugins = with pkgs.vimPlugins; [
+        rust-tools-nvim
+        crates-nvim
+        direnv-vim
+        vimtex
+
         # Syntax
         vim-nix
         vim-markdown
@@ -36,8 +42,7 @@
           \ 'colorscheme': 'wombat',
           \ }                                     " Color scheme lightline
         highlight Comment cterm=italic gui=italic " Comments become italic
-        hi Normal guibg=NONE ctermbg=NONE         " Remove background, better for personal theme
-        
+        hi Normal guibg=NONE ctermbg=NONE         " Remove background, better for personal them
         set number                                " Set numbers
         nmap <F6> :NERDTreeToggle<CR>             " F6 opens NERDTree
       '';

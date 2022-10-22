@@ -33,8 +33,9 @@
     rnix-lsp # nix language server
     # nil # another nix language server
     rustup # rust toolchain manager
-    # rust-analyzer
+    rust-analyzer
     # taplo
+    graphviz-nox
 
     ranger # tui file manager
     xfce.thunar # gui file manager
@@ -50,6 +51,8 @@
     texlive.combined.scheme-full # latex
     hdparm
     hwinfo
+    jq
+    nixos-option
   ];
 
   services = {
@@ -66,13 +69,15 @@
   };
 
   programs = {
-    man.generateCaches = true;
+    man.generateCaches = true; # TODO: does this work
 
     gpg.enable = true;
-
+    sagemath.enable = true;
     alacritty.enable = true;
-    kitty.enable = true;
-
+    kitty = {
+      enable = true;
+      # theme = "Gruvbox Dark";
+    };
     starship.enable = true;
 
     # helix.enable = true;

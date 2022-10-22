@@ -27,6 +27,8 @@
       se = "sudo -e ";
       log1 = "journalctl -b -x -p 5";
       log2 = "systemctl --failed";
+      packages = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq";
+      # nixos-option environment.systemPackages | head -2 | tail -1 | sed -e 's/ /\n/g' | cut -d- -f2- | sort | uniq
     };
     sessionVariables = {
       EDITOR = "nvim";
