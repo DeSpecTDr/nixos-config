@@ -77,8 +77,19 @@
     kitty = {
       enable = true;
       # theme = "Gruvbox Dark";
+      # font.name = "Fura Mono Regular Nerd Font Complete";
+      # font.name = "Fira Code Regular Nerd Font Complete";
+      font.name = "Hack Nerd Font";
+      settings = {
+        background_opacity = "0.8";
+      };
     };
-    starship.enable = true;
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = false;
+      };
+    };
 
     # helix.enable = true;
 

@@ -76,7 +76,14 @@
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "FiraMono"
+          "FiraCode"
+          "Hack"
+          "Ubuntu"
+        ];
+      })
     ];
   };
 
