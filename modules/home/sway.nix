@@ -174,8 +174,8 @@ in
               "critical" = 15;
             };
             "format" = "{capacity}% {icon}";
-            # "format-charging" = "{capacity}% ";
-            # "format-plugged" = "{capacity}% ";
+            "format-charging" = "{capacity}% ";
+            "format-plugged" = "{capacity}% ";
             "format-alt" = "{time} {icon}";
             # "format-good" = "", # An empty format will hide the module
             # "format-full" = "";
@@ -189,9 +189,12 @@ in
           };
           "pulseaudio" = {
             "scroll-step" = 10;
-            "format" = "{volume}% {icon}";
-            "format-bluetooth" = "{volume}% {icon}";
+            "format" = "{volume}% {icon} {format_source}";
+            "format-bluetooth" = "{volume}% {icon} {format_source}";
             "format-muted" = "";
+            # "format-source" = "{volume}% ";
+            "format-source" = "";
+            "format-source-muted" = "";
             "format-icons" = {
               "headphones" = "";
               "handsfree" = "";

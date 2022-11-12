@@ -95,11 +95,15 @@
 
   # systemd.services."<service-name>".wantedBy = lib.mkForce [ ];
   services = {
-    flatpak.enable = true; # flatseal, steam, discord
+    flatpak.enable = true; # flatseal, steam, discord, (DRI_PRIME=1)
     udisks2.enable = true; # TODO: automount usb drives
     dbus.enable = true;
     # fwupd.enable = true; # firmware updates
     # openssh.enable = true;
+    logind.extraConfig = ''
+      # don’t shutdown when power button is short-pressed
+      HandlePowerKey=ignore
+    '';
   };
 
   xdg.portal = {
@@ -117,7 +121,15 @@
 
   security = {
     # polkit.enable = true;
+    # doas = {
+    #   enable = true;
+    #   extraRules = [{
+    #     groups = [ "wheel" ];
+    #     persist = true;
+    #   }];
+    # };
     sudo = {
+      # enable = false;
       package = pkgs.sudo.override {
         withInsults = true;
       };

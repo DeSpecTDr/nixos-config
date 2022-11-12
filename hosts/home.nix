@@ -9,7 +9,7 @@
 
   home.packages = with pkgs; [
     (tor-browser-bundle-bin.override {
-      useHardenedMalloc = false;
+      # useHardenedMalloc = false;
     })
 
     vlc
@@ -29,6 +29,7 @@
     logseq # todo list
     qbittorrent
     # lapce
+    blender-hip # TODO: just blender on nvidia?
 
     rnix-lsp # nix language server
     # nil # another nix language server

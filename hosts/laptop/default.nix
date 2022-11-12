@@ -12,7 +12,7 @@
     # };
   };
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.enable = true; # TODO: disable on startup 
 
   boot = {
     loader = {
@@ -37,17 +37,18 @@
     };
     initrd = {
       systemd.enable = true;
-      preLVMCommands = ''
-        echo '--- OWNERSHIP NOTICE ---'
-        echo 'This device is property of .'
-        echo 'If lost please contact . at .'
-        echo '--- OWNERSHIP NOTICE ---'
-      '';
+      #   preLVMCommands = ''
+      #     echo '--- OWNERSHIP NOTICE ---'
+      #     echo 'This device is property of .'
+      #     echo 'If lost please contact . at .'
+      #     echo '--- OWNERSHIP NOTICE ---'
+      #   '';
+      # };
     };
     plymouth = {
       enable = true;
       theme = "breeze";
-    };  
+    };
   };
 
   # services.journald.console = "/dev/tty12";

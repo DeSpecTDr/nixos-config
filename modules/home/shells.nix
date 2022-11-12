@@ -9,14 +9,14 @@
       '';
     };
 
-    zsh = {
-      enable = true;
-      enableCompletion = false; # enabled in oh-my-zsh
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" "systemd" ];
-      };
-    };
+    # zsh = {
+    #   enable = true;
+    #   enableCompletion = false; # enabled in oh-my-zsh
+    #   oh-my-zsh = {
+    #     enable = true;
+    #     plugins = [ "git" "systemd" ];
+    #   };
+    # };
   };
 
   home = {
@@ -24,7 +24,7 @@
       nixupd = "nix flake update ~/nixos";
       nixreb = "sudo nixos-rebuild switch -v --flake ~/nixos";
       e = "nvim ";
-      se = "sudo -e ";
+      # se = "sudo -e ";
       log1 = "journalctl -b -x -p 5";
       log2 = "systemctl --failed";
       packages = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq";
