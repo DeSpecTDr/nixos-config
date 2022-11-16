@@ -62,7 +62,7 @@
       enable = true;
       temperature = {
         day = 6500;
-        night = 1200;
+        night = 2000;
       };
       dawnTime = "6:00-7:45";
       duskTime = "20:35-22:15";
@@ -73,7 +73,7 @@
     man.generateCaches = true; # TODO: does this work
 
     gpg.enable = true;
-    sagemath.enable = true;
+    # sagemath.enable = true;
     alacritty.enable = true;
     kitty = {
       enable = true;
@@ -144,6 +144,8 @@
     homeDirectory = "/home/${user}";
     stateVersion = "22.05";
   };
+
+  home.file."homepackages.txt".text = builtins.concatStringsSep "\n" config.home.packages;
 
   programs.home-manager.enable = true;
 }

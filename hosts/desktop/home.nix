@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }: {
   home.packages = with pkgs; [
-    polymc # minecraft
+    prismlauncher # minecraft
   ];
 
   xsession.enable = true;

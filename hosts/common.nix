@@ -137,5 +137,15 @@
     };
   };
 
+  environment.etc."systempackages.txt".text = builtins.concatStringsSep "\n" config.environment.systemPackages;
+
+  # config.users.users.${user}.packages;
+  # let
+  #   packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+  #   sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
+  #   formatted = builtins.concatStringsSep "\n" sortedUnique;
+  # in
+  # formatted;
+
   system.stateVersion = "22.05";
 }
