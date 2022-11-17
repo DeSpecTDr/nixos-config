@@ -1,6 +1,12 @@
 { config, pkgs, lib, ... }: {
   home.packages = with pkgs; [
     prismlauncher # minecraft
+
+    # freecad packages
+    freecad
+    gmsh
+    calculix
+    elmerfem
   ];
 
   xsession.enable = true;
