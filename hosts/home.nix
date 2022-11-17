@@ -52,6 +52,7 @@
     texlive.combined.scheme-full # latex
     hdparm
     hwinfo
+    powertop
     jq
     nixos-option
   ];
