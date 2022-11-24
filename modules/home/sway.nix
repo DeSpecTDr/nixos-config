@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   mod = "Mod4";
+  # swaylock = "systemd-inhibit --what=handle-lid-switch ...";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
 in
 {
@@ -101,7 +102,7 @@ in
 
   programs = {
     swaylock.settings = {
-      daemonize = true;
+      daemonize = true; # is it needed?
       show-failed-attempts = true;
       screenshots = true;
       clock = true;

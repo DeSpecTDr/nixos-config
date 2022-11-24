@@ -25,7 +25,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod; # zen or lqx or xanmod_latest?
+    kernelPackages = pkgs.linuxPackages_xanmod; # zen or lqx or xanmod_latest or xanmod_tt?
     # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     kernel.sysctl = { "vm.swappiness" = 1; };
     tmpOnTmpfs = true;
@@ -103,8 +103,12 @@
     logind.extraConfig = ''
       # don’t shutdown when power button is short-pressed
       HandlePowerKey=ignore
+      # let systemd handle it
+      LidSwitchIgnoreInhibited=no
     '';
   };
+
+  virtualisation.libvirtd.enable = true; # TODO: disable on startup?
 
   xdg.portal = {
     enable = true;

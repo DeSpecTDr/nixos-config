@@ -12,8 +12,6 @@
     # };
   };
 
-  virtualisation.libvirtd.enable = true; # TODO: disable on startup 
-
   boot = {
     loader = {
       timeout = 1; # TODO: make grub hidden by default
@@ -25,6 +23,7 @@
         configurationLimit = 10;
         efiInstallAsRemovable = true; # install to hardcoded EFI location
       };
+      # use systemd-boot, but without full-disk encryption?
       systemd-boot = {
         # enable = true;
         editor = false;
@@ -92,7 +91,9 @@
   # TODO: check if it works without it
   security.pam.services."swaylock".text = "auth include login";
 
-  tlp.enable = true; # conflicts with powerManagement?
   # services.thermald.enable = true;
-  services.upower.enable = true; # for safely hibernating when 2 mins of charge are left
+  services = {
+    upower.enable = true; # for safely hibernating when 2 mins of charge are left
+    tlp.enable = true; # preserve power
+  };
 }
