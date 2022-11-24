@@ -30,6 +30,7 @@
     qbittorrent
     # lapce
     blender-hip # TODO: just blender on nvidia?
+    virt-manager
 
     rnix-lsp # nix language server
     # nil # another nix language server
