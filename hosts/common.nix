@@ -99,7 +99,10 @@
     udisks2.enable = true; # TODO: automount usb drives
     dbus.enable = true;
     # fwupd.enable = true; # firmware updates
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      passwordAuthentication = false;
+    };
     logind.extraConfig = ''
       HandlePowerKey=ignore
       LidSwitchIgnoreInhibited=no
