@@ -99,11 +99,9 @@
     udisks2.enable = true; # TODO: automount usb drives
     dbus.enable = true;
     # fwupd.enable = true; # firmware updates
-    # openssh.enable = true;
+    openssh.enable = true;
     logind.extraConfig = ''
-      # don’t shutdown when power button is short-pressed
       HandlePowerKey=ignore
-      # let systemd handle it
       LidSwitchIgnoreInhibited=no
     '';
   };
@@ -151,5 +149,5 @@
   # in
   # formatted;
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }

@@ -5,7 +5,7 @@
   ];
 
   home.packages = with pkgs; [
-    firefox-wayland # TODO: switch to librewolf
+    firefox-wayland
     thunderbird-wayland # -wayland???
   ];
   

@@ -76,7 +76,6 @@
 
     gpg.enable = true;
     # sagemath.enable = true;
-    alacritty.enable = true;
     kitty = {
       enable = true;
       # theme = "Gruvbox Dark";
@@ -94,27 +93,18 @@
       };
     };
 
-    # helix.enable = true;
-
     # dircolors.enable = true;
 
     nix-index.enable = true; # nix-index, nix-locate
 
-    obs-studio = {
-      enable = true;
-      # Works without that?
-      # plugins = with obs-studio-plugins; [
-      #   wlrobs
-      #   obs-pipewire-audio-capture
-      # ];
-    };
+    obs-studio.enable = true;
 
     ncmpcpp.enable = true; # TODO: add mpc
 
     git = {
       enable = true;
       userName = "DeSpecTDr";
-      userEmail = "73001251+DeSpecTDr@users.noreply.github.com";
+      userEmail = "73001251+DeSpecTDr@users.noreply.github.com"; # TODO: use real email
       extraConfig = {
         init.defaultBranch = "main";
       }; # TODO: add gpg key
@@ -144,7 +134,7 @@
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
-    stateVersion = "22.05";
+    stateVersion = "22.11";
   };
 
   home.file."homepackages.txt".text = builtins.concatStringsSep "\n" config.home.packages;
