@@ -23,7 +23,7 @@
     shellAliases = {
       nixupd = "nix flake update ~/nixos";
       nixreb = "sudo nixos-rebuild switch -v --flake ~/nixos";
-      nixdiff = "nixos-rebuild build ~/nixos -v && ${pkgs.nvd}/bin/nvd diff /run/current-system result";
+      nixbuild = "cd ~/nixos && nixos-rebuild build --flake . && ${pkgs.nvd}/bin/nvd diff /run/current-system result";
       e = "nvim ";
       # se = "sudo -e ";
       log1 = "journalctl -b -x -p 5";

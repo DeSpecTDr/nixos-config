@@ -25,7 +25,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod; # zen or lqx or xanmod_latest or xanmod_tt?
+    kernelPackages = pkgs.linuxPackages_xanmod_latest; # zen or lqx or xanmod_latest or xanmod_tt?
     # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     kernel.sysctl = { "vm.swappiness" = 1; };
     tmpOnTmpfs = true;
@@ -109,7 +109,10 @@
     '';
   };
 
-  virtualisation.libvirtd.enable = true; # TODO: disable on startup?
+  virtualisation = {
+    libvirtd.enable = true; # TODO: disable on startup?
+    podman.enable = true;
+  };
 
   xdg.portal = {
     enable = true;
@@ -141,6 +144,12 @@
       extraConfig = "Defaults insults";
     };
   };
+
+  documentation.man.generateCaches = true; # for autocompletion
+  # environment.pathsToLink = [
+  #   # "/share/zsh"
+  #   "/share/fish"
+  # ];
 
   environment.etc."systempackages.txt".text = builtins.concatStringsSep "\n" config.environment.systemPackages;
 

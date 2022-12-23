@@ -29,7 +29,7 @@
     logseq # todo list
     qbittorrent
     # lapce
-    blender-hip # TODO: just blender on nvidia?
+    # blender-hip # TODO: just blender on nvidia?
     virt-manager
 
     rnix-lsp # nix language server
@@ -56,6 +56,8 @@
     powertop
     jq
     nixos-option
+    p7zip
+    unar # universal archive unpacker
   ];
 
   services = {

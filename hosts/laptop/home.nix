@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     firefox-wayland
     thunderbird-wayland # -wayland???
+    blender-hip
   ];
   
   programs.librewolf.package = pkgs.librewolf-wayland;

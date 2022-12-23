@@ -50,26 +50,13 @@
     };
   };
 
-  # services.journald.console = "/dev/tty12";
-  # hardware.ksm.enable = true;
-  # services.smartd = {
-  #   enable = true;
-  #   # Monitor all devices connected to the machine at the time it's being started
-  #   autodetect = true;
-  #   notifications = {
-  #     x11.enable = if config.services.xserver.enable then true else false;
-  #     wall.enable = true; # send wall notifications to all users
-  #   };
-  # };
-  # Enable entropy daemon which refills /dev/random when low
-  # services.haveged.enable = true;
-  # Add the NixOS Manual on virtual console 8
   # services.nixosManual.showManual = true;
   # services.gnome3.gnome-keyring.enable = true;
   hardware.bluetooth = {
-    enable = false;
+    enable = true;
     powerOnBoot = false;
   };
+  services.blueman.enable = true;
   # programs.iftop.enable = true;
   # programs.iotop.enable = true;
   # programs.mtr.enable = true;
@@ -80,11 +67,17 @@
     enable = true;
   };
 
+  # TODO: find a way to make sway a separate cgroup
+  # systemd.oomd = {
+  #   enableRootSlice = true;
+  #   enableUserServices = true;
+  # };
+
   xdg.portal.wlr.enable = true;
 
   hardware.opengl.extraPackages = with pkgs; [
-    rocm-opencl-icd
-    rocm-opencl-runtime
+    # rocm-opencl-icd
+    # rocm-opencl-runtime
   ];
 
   # TODO: move this to sway (somehow)

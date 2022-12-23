@@ -2,23 +2,18 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-22.11";
     # unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "home-manager";
+      url = "home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-doom-emacs = {
-      url = "github:nix-community/nix-doom-emacs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    rnix-lsp = {
-      url = "github:nix-community/rnix-lsp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-doom-emacs = {
+    #   url = "github:nix-community/nix-doom-emacs";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # nil = {
     #   url = "github:oxalica/nil";
