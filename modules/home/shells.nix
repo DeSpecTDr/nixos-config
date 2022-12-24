@@ -24,6 +24,7 @@
       nixupd = "nix flake update ~/nixos";
       nixreb = "sudo nixos-rebuild switch -v --flake ~/nixos";
       nixbuild = "cd ~/nixos && nixos-rebuild build --flake . && ${pkgs.nvd}/bin/nvd diff /run/current-system result";
+      nixswitch = "sudo ~/nixos/result/bin/switch-to-configuration switch";
       e = "nvim ";
       # se = "sudo -e ";
       log1 = "journalctl -b -x -p 5";
