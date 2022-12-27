@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-22.11";
-    # unstable.url = "nixpkgs/nixos-unstable";
+    unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "home-manager/release-22.11";
@@ -38,7 +38,7 @@
 
       overlays = [
         (final: prev: with inputs; {
-          # unstable = unstable.legacyPackages.${prev.system};
+          unstable = unstable.legacyPackages.${prev.system};
           # rnix-lsp = rnix-lsp.defaultPackage.${prev.system};
           # webcord = webcord.packages.${prev.system}.default;
           # nil = nil.packages.${prev.system}.default; # check it later
