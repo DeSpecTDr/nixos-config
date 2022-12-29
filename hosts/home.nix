@@ -8,9 +8,7 @@
   ];
 
   home.packages = with pkgs; [
-    (tor-browser-bundle-bin.override {
-      # useHardenedMalloc = false;
-    })
+    tor-browser-bundle-bin
 
     vlc
     mpv
@@ -22,7 +20,7 @@
     krita
     libreoffice
     stellarium
-    zathura # pdf viewer (broken) change to okular?
+    zathura # pdf viewer
     okular # pdf viewer
     audacious # audio player
     joplin-desktop # todo list
