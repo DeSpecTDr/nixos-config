@@ -7,9 +7,7 @@
 
   boot.supportedFilesystems = [ "ntfs" ]; # for external hdd
 
-  # nix search nixpkgs wget
   environment.systemPackages = with pkgs; [
-    # tools
     ffmpeg
     wget
     btop
@@ -20,13 +18,10 @@
     du-dust
     fd
     smartmontools
-
-    # TODO: add all packages here (but commented out)
   ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest; # zen or lqx or xanmod_latest or xanmod_tt?
-    # extraModulePackages = with config.boot.kernelPackages; [ wireguard ];
     kernel.sysctl = { "vm.swappiness" = 1; };
     tmpOnTmpfs = true;
   };
@@ -63,6 +58,12 @@
       experimental-features = [ "nix-command" "flakes" ];
       keep-outputs = true;
       auto-optimise-store = true;
+      substituters = [
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
     };
     gc = {
       automatic = true;
@@ -95,6 +96,7 @@
 
   # systemd.services."<service-name>".wantedBy = lib.mkForce [ ];
   services = {
+    gnome.gnome-keyring.enable = true;
     flatpak.enable = true; # flatseal, steam, discord, (DRI_PRIME=1)
     udisks2.enable = true; # TODO: automount usb drives
     dbus.enable = true;
@@ -125,6 +127,7 @@
     light.enable = true; # brightness
     gnome-disks.enable = true; # for disk benchmarking
     kdeconnect.enable = true;
+    seahorse.enable = true;
   };
 
   security = {

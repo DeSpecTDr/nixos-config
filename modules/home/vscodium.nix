@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
+    package = pkgs.unstable.vscodium;
     extensions = with pkgs.unstable.vscode-extensions; [
       ms-toolsai.jupyter
       ms-python.python
