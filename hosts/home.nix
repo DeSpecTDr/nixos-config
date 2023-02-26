@@ -8,7 +8,9 @@
   ];
 
   home.packages = with pkgs; [
-    tor-browser-bundle-bin
+    (tor-browser-bundle-bin.override {
+      useHardenedMalloc = false; # it broke again???
+    })
 
     vlc
     mpv
@@ -18,13 +20,14 @@
 
     keepassxc # password manager
     krita
+    inkscape
     libreoffice
     stellarium
     zathura # pdf viewer
     okular # pdf viewer
     audacious # audio player
     joplin-desktop # todo list
-    logseq # todo list
+    # logseq # todo list
     qbittorrent
     # lapce
     # blender-hip # TODO: just blender on nvidia?
@@ -38,7 +41,6 @@
     graphviz-nox
 
     ranger # tui file manager
-    xfce.thunar # gui file manager
 
     hollywood
     # filelight # file size graph
@@ -56,6 +58,19 @@
     nixos-option
     p7zip
     unar # universal archive unpacker
+    ark
+
+    # (qemu.overrideAttrs (prev: {
+    #   version = "git";
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "beckus";
+    #     repo = "qemu_stm32";
+    #     rev = "5ae4df8a7267149f6ff5a9f8fa4f6b8adbc28fbc";
+    #     # sha256 = pkgs.lib.fakeSha256;
+    #     sha256 = "sha256-kTs4UYprkUc/aKHWax/6itJLSoseAElyq0UZCww1HZU=";
+    #     patches = lib.mkForce [ ];
+    #   };
+    # }))
   ];
 
   services = {
@@ -75,7 +90,7 @@
     man.generateCaches = true; # TODO: does this work
 
     gpg.enable = true;
-    # sagemath.enable = true;
+    sagemath.enable = true;
     kitty = {
       enable = true;
       # theme = "Gruvbox Dark";

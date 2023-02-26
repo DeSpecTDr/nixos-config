@@ -49,7 +49,7 @@
   users.users.${user} = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "dialout" ];
     initialPassword = "notmyrealpassword";
   };
 
@@ -58,6 +58,7 @@
       experimental-features = [ "nix-command" "flakes" ];
       keep-outputs = true;
       auto-optimise-store = true;
+      keep-going = true;
       substituters = [
         "https://nix-community.cachix.org"
       ];
@@ -94,9 +95,9 @@
     driSupport32Bit = true;
   };
 
-  # systemd.services."<service-name>".wantedBy = lib.mkForce [ ];
+  systemd.services.sshd.wantedBy = lib.mkForce [ ];
   services = {
-    gnome.gnome-keyring.enable = true;
+    gnome.gnome-keyring.enable = true; # switch to keepassxc secret service?
     flatpak.enable = true; # flatseal, steam, discord, (DRI_PRIME=1)
     udisks2.enable = true; # TODO: automount usb drives
     dbus.enable = true;
@@ -104,6 +105,7 @@
     openssh = {
       enable = true;
       passwordAuthentication = false;
+      # startWhenNeeded = true;
     };
     logind.extraConfig = ''
       HandlePowerKey=ignore
@@ -128,6 +130,14 @@
     gnome-disks.enable = true; # for disk benchmarking
     kdeconnect.enable = true;
     seahorse.enable = true;
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+        thunar-media-tags-plugin
+      ];
+    };
   };
 
   security = {

@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [ # move to home?
     pamixer
     pavucontrol
-    helvum
+    # helvum
     # paprefs
     easyeffects
   ];
