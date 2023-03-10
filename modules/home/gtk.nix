@@ -3,10 +3,6 @@
     (pkgs.writeShellScriptBin "lxappearance" "GDK_BACKEND=x11 ${pkgs.lxappearance}/bin/lxappearance") # theme viewer
   ];
 
-  home.sessionVariables = {
-    # GTK_USE_PORTAL = 1; # ??? TODO: https://github.com/NixOS/nixpkgs/pull/179204
-  };
-
   # https://libredd.it/r/NixOS/comments/nxnswt/cant_change_themes_on_wayland
   gtk = {
     enable = true;
@@ -42,8 +38,8 @@
   #     gtk-application-prefer-dark-theme = true;
   #   };
   # };
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gtk";
+  # };
 }

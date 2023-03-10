@@ -18,7 +18,7 @@
 
       # "webgl.disabled" = false; # use Canvas Blocker if enabled
       "privacy.resistFingerprinting" = true;
-      "privacy.resistFingerprinting.letterboxing" = true;
+      # "privacy.resistFingerprinting.letterboxing" = true;
       "privacy.clearOnShutdown.history" = false;
       # "privacy.clearOnShutdown.downloads" = false; # TODO: check what this does
       # "browser.display.use_document_fonts" = 0; # does RFP do this?
