@@ -9,7 +9,7 @@
 
   home.packages = with pkgs; [
     (tor-browser-bundle-bin.override {
-      useHardenedMalloc = false; # it broke again???
+      # useHardenedMalloc = false; # it broke again???
     })
 
     vlc
@@ -71,6 +71,51 @@
     #     patches = lib.mkForce [ ];
     #   };
     # }))
+
+    xdg-utils
+    atool
+    unzip
+    killall
+    # llvmPackages.bintools
+    # umr
+    # rocm-smi
+    # glxinfo
+    # pciutils
+    # inxi
+
+    vulkan-tools
+    minicom
+    # nushell
+    xorg.xeyes
+    file
+    # nodejs
+    nmap
+    x11docker
+    python3
+    # catatonit
+    # bottles
+    compsize
+    wireguard-tools
+    # dbeaver
+    # sqlite
+    songrec
+    # brave
+    kdenlive
+    arduino
+    usbutils
+    # etcher
+    android-tools
+    inetutils
+    # mplayer
+    # v4l-utils
+    filelight
+    # zellij
+    # ungoogled-chromium
+    psmisc
+    # picocom
+    # socat
+    # ddd
+    nix-tree
   ];
 
   services = {
