@@ -34,7 +34,7 @@
     virt-manager
 
     rnix-lsp # nix language server
-    # nil # another nix language server
+    unstable.nil # another nix language server
     rustup # rust toolchain manager
     rust-analyzer
     # taplo
@@ -59,18 +59,6 @@
     p7zip
     unar # universal archive unpacker
     ark
-
-    # (qemu.overrideAttrs (prev: {
-    #   version = "git";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "beckus";
-    #     repo = "qemu_stm32";
-    #     rev = "5ae4df8a7267149f6ff5a9f8fa4f6b8adbc28fbc";
-    #     # sha256 = pkgs.lib.fakeSha256;
-    #     sha256 = "sha256-kTs4UYprkUc/aKHWax/6itJLSoseAElyq0UZCww1HZU=";
-    #     patches = lib.mkForce [ ];
-    #   };
-    # }))
 
     xdg-utils
     atool

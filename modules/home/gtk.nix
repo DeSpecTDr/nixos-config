@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-  home.packages = with pkgs; [
+  home.packages = [
     (pkgs.writeShellScriptBin "lxappearance" "GDK_BACKEND=x11 ${pkgs.lxappearance}/bin/lxappearance") # theme viewer
   ];
 
@@ -17,13 +17,18 @@
     theme = {
       # name = "gruvbox-dark";
       # package = pkgs.gruvbox-dark-gtk;
-      name = "Colloid-Dark";
-      package = pkgs.colloid-gtk-theme;
+      # name = "Colloid-Dark";
+      # package = pkgs.colloid-gtk-theme;
+      name = "Adwaita-dark";
+      package = pkgs.gnome.gnome-themes-extra;
     };
     iconTheme = {
-      name = "WhiteSur-dark";
-      package = pkgs.whitesur-icon-theme;
+      # name = "WhiteSur-dark";
+      # package = pkgs.whitesur-icon-theme;
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
     };
+
     # iconTheme = {
     #   name = "Papirus-Dark-Maia"; # Candy and Tela also look good
     #   package = pkgs.papirus-maia-icon-theme;
@@ -38,8 +43,12 @@
   #     gtk-application-prefer-dark-theme = true;
   #   };
   # };
-  # qt = {
-  #   enable = true;
-  #   platformTheme = "gtk";
-  # };
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt;
+    };
+  };
 }

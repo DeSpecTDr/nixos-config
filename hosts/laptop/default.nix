@@ -75,10 +75,10 @@
 
   xdg.portal.wlr.enable = true;
 
-  hardware.opengl.extraPackages = with pkgs; [
-    # rocm-opencl-icd
-    # rocm-opencl-runtime
-  ];
+  # hardware.opengl.extraPackages = with pkgs; [
+  #   rocm-opencl-icd
+  #   rocm-opencl-runtime
+  # ];
 
   # TODO: move this to sway (somehow)
   # TODO: check if it works without it
@@ -86,7 +86,7 @@
 
   # services.thermald.enable = true;
   services = {
-    upower.enable = true; # for safely hibernating when 2 mins of charge are left
+    upower.enable = true; # FIXME: Doesn't work, for safely hibernating when 2 mins of charge are left
     tlp.enable = true; # preserve power
   };
 }
