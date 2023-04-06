@@ -7,18 +7,7 @@
 
   boot.supportedFilesystems = [ "ntfs" ]; # for external hdd
 
-  environment.systemPackages = with pkgs; [
-    ffmpeg
-    wget
-    btop
-    htop
-    neofetch
-    ripgrep
-    bat
-    du-dust
-    fd
-    smartmontools
-  ];
+  # environment.systemPackages = with pkgs; [ ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest; # zen or lqx or xanmod_latest or xanmod_tt?

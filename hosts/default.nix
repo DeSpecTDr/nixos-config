@@ -14,7 +14,7 @@
           extraSpecialArgs = { inherit user; };
           users.${user} = lib.mkMerge [
             (import ./home.nix)
-            inputs.nix-doom-emacs.hmModule
+            # inputs.nix-doom-emacs.hmModule
             (import ./laptop/home.nix)
           ];
         };

@@ -7,6 +7,7 @@
 - zramSwap
 - try out home-manager standalone
 - move to codeberg?
+- doom emacs
 
 # Filesystem setup:
 

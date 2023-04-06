@@ -59,7 +59,16 @@
     p7zip
     unar # universal archive unpacker
     ark
-
+    ffmpeg
+    wget
+    btop
+    htop
+    neofetch
+    ripgrep
+    bat
+    du-dust
+    fd
+    smartmontools
     xdg-utils
     atool
     unzip
@@ -123,7 +132,7 @@
     man.generateCaches = true; # TODO: does this work
 
     gpg.enable = true;
-    sagemath.enable = true;
+    # sagemath.enable = true;
     kitty = {
       enable = true;
       # theme = "Gruvbox Dark";
