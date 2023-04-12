@@ -8,8 +8,4 @@
       pkgs.cnijfilter2 # for Canon TS8040 (do not buy this model, it's terrible)
     ];
   };
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "cnijfilter2"
-  ];
 }

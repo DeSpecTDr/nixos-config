@@ -7,6 +7,10 @@
 
   boot.supportedFilesystems = [ "ntfs" ]; # for external hdd
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "cnijfilter2"
+  ];
+
   # environment.systemPackages = with pkgs; [ ];
 
   boot = {
