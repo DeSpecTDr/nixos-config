@@ -36,7 +36,7 @@
     rnix-lsp # nix language server
     unstable.nil # another nix language server
     rustup # rust toolchain manager
-    rust-analyzer
+    # rust-analyzer
     # taplo
     graphviz-nox
 

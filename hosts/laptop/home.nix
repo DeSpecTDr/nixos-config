@@ -9,6 +9,6 @@
     thunderbird-wayland # -wayland???
     blender-hip
   ];
-  
+
   programs.librewolf.package = pkgs.librewolf-wayland;
 }

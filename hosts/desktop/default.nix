@@ -22,18 +22,21 @@
     };
   };
 
-  boot.loader = {
-    timeout = 1;
-    grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
-      configurationLimit = 10;
-      efiInstallAsRemovable = true; # install to hardcoded EFI location
-    };
-    efi = {
-      canTouchEfiVariables = false;
-      efiSysMountPoint = "/efi";
+  boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
+    loader = {
+      timeout = 1;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        configurationLimit = 10;
+        efiInstallAsRemovable = true; # install to hardcoded EFI location
+      };
+      efi = {
+        canTouchEfiVariables = false;
+        efiSysMountPoint = "/efi";
+      };
     };
   };
 

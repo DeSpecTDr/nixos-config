@@ -10,7 +10,6 @@
   # environment.systemPackages = with pkgs; [ ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_latest; # zen or lqx or xanmod_latest or xanmod_tt?
     kernel.sysctl = { "vm.swappiness" = 1; };
     tmpOnTmpfs = true;
   };

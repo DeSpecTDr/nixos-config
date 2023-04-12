@@ -13,6 +13,7 @@
   };
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_xanmod_latest; # zen or lqx or xanmod_latest or xanmod_tt?
     loader = {
       timeout = 1; # TODO: make grub hidden by default
       grub = {

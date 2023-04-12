@@ -1,5 +1,6 @@
-{
+{ config, ... }: {
   boot = {
+    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     kernelModules = [ "kvm-amd" ];
     initrd = {
       availableKernelModules = [ "nvme" "xhci_pci" "ahci" "sd_mod" ];

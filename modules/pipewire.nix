@@ -1,5 +1,6 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ # move to home?
+  environment.systemPackages = with pkgs; [
+    # move to home?
     pamixer
     pavucontrol
     # helvum
