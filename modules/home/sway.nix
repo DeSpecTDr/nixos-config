@@ -1,10 +1,13 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   mod = "Mod4";
   # swaylock = "systemd-inhibit --what=handle-lid-switch ...";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
-in
-{
+in {
   home.packages = with pkgs; [
     bemenu # wayland clone of dmenu
     mako # notification system
@@ -65,12 +68,20 @@ in
         inner = 5;
         smartBorders = "on";
       };
-      bars = [{
-        command = "waybar";
-      }];
+      bars = [
+        {
+          command = "waybar";
+        }
+      ];
       startup = [
-        { command = "${pkgs.autotiling}/bin/autotiling"; always = true; } # better tiling
-        { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; always = true; }
+        {
+          command = "${pkgs.autotiling}/bin/autotiling";
+          always = true;
+        } # better tiling
+        {
+          command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          always = true;
+        }
       ];
       seat.seat0.xcursor_theme = config.gtk.cursorTheme.name;
     };
@@ -88,17 +99,24 @@ in
     swayidle = {
       enable = true;
       timeouts = [
-        { timeout = 300; command = "${swaylock} --grace 5"; }
+        {
+          timeout = 300;
+          command = "${swaylock} --grace 5";
+        }
         {
           timeout = 360;
           command = ''swaymsg "output * dpms off"''; # TODO: doesn't work
           resumeCommand = ''swaymsg "output * dpms on"'';
         }
       ];
-      events = [{ event = "before-sleep"; command = swaylock; }];
+      events = [
+        {
+          event = "before-sleep";
+          command = swaylock;
+        }
+      ];
     };
   };
-
 
   programs = {
     swaylock.settings = {
@@ -122,8 +140,8 @@ in
             "sway/workspaces"
             "sway/mode"
           ];
-          "modules-center" = [ "sway/window" ];
-          "modules-right" = [ "pulseaudio" "network" "cpu" "memory" "battery" "tray" "clock" ];
+          "modules-center" = ["sway/window"];
+          "modules-right" = ["pulseaudio" "network" "cpu" "memory" "battery" "tray" "clock"];
 
           # modules:
           "sway/workspaces" = {
@@ -180,7 +198,7 @@ in
             "format-alt" = "{time} {icon}";
             # "format-good" = "", # An empty format will hide the module
             # "format-full" = "";
-            "format-icons" = [ " " " " " " " " " " ];
+            "format-icons" = [" " " " " " " " " "];
           };
           "network" = {
             # "interface" = "wlp2s0", # (Optional) To force the use of this interface
@@ -203,7 +221,7 @@ in
               "phone" = "";
               "portable" = "";
               "car" = "";
-              "default" = [ "" "" ];
+              "default" = ["" ""];
             };
             "on-click" = "pavucontrol";
           };

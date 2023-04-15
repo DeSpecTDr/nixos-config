@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   # Enable CUPS to print documents.
   # http://localhost:631
   # socket://192.168.0.36

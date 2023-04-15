@@ -1,9 +1,6 @@
 # nvim config from MatthiasBenaets
 # todo: https://github.com/figsoda/dotfiles/blob/main/lib/nvim/default.nix
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs = {
     neovim = {
       enable = true;
@@ -26,7 +23,7 @@
         # File Tree
         nerdtree # File Manager - set in extraConfig to F6
 
-        # Customization 
+        # Customization
         wombat256-vim # Color scheme for lightline
         srcery-vim # Color scheme for text
 

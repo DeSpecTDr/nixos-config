@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ../../modules/home/sway.nix
     # ../../modules/home/emacs.nix

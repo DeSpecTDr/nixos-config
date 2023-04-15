@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./hardware.nix
   ];
@@ -57,7 +62,7 @@
       lightdm.enable = true;
       defaultSession = "none+i3";
     };
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = ["nvidia"];
   };
 
   # environment.sessionVariables = {
@@ -70,7 +75,7 @@
 
   hardware = {
     # opengl.enable = true;
-    opengl.extraPackages = [ pkgs.nvidia-vaapi-driver ];
+    opengl.extraPackages = [pkgs.nvidia-vaapi-driver];
     # nvidia = {
     #   # open = true;
     #   modesetting.enable = true;

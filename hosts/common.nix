@@ -1,20 +1,28 @@
-{ config, pkgs, lib, inputs, user, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  user,
+  ...
+}: {
   imports = [
     ../modules/pipewire.nix
     ../modules/printer.nix
     ../modules/syncthing.nix
   ];
 
-  boot.supportedFilesystems = [ "ntfs" ]; # for external hdd
+  boot.supportedFilesystems = ["ntfs"]; # for external hdd
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "cnijfilter2"
-  ];
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "cnijfilter2"
+    ];
 
   # environment.systemPackages = with pkgs; [ ];
 
   boot = {
-    kernel.sysctl = { "vm.swappiness" = 1; };
+    kernel.sysctl = {"vm.swappiness" = 1;};
     tmpOnTmpfs = true;
   };
 
@@ -41,13 +49,13 @@
   users.users.${user} = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "dialout" ];
+    extraGroups = ["networkmanager" "wheel" "video" "libvirtd" "dialout"];
     initialPassword = "notmyrealpassword";
   };
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       keep-outputs = true;
       auto-optimise-store = true;
       keep-going = true;
@@ -63,7 +71,7 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # fix nix-index
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"]; # fix nix-index
     registry.nixpkgs.flake = inputs.nixpkgs; # do this with other inputs? flake-utils?
   };
 
@@ -87,7 +95,7 @@
     driSupport32Bit = true;
   };
 
-  systemd.services.sshd.wantedBy = lib.mkForce [ ];
+  systemd.services.sshd.wantedBy = lib.mkForce [];
   services = {
     gnome.gnome-keyring.enable = true; # switch to keepassxc secret service?
     flatpak.enable = true; # flatseal, steam, discord, (DRI_PRIME=1)
@@ -112,7 +120,7 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   programs = {

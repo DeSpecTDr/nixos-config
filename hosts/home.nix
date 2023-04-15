@@ -1,4 +1,10 @@
-{ config, pkgs, lib, user, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
+}: {
   imports = [
     ../modules/home/nvim.nix
     ../modules/home/shells.nix

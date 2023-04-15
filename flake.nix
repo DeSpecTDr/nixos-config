@@ -32,23 +32,27 @@
     # webcord.url = "github:fufexan/webcord-flake";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }:
-    let
-      user = "user";
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  }: let
+    user = "user";
 
-      overlays = [
-        (final: prev: with inputs; {
+    overlays = [
+      (final: prev:
+        with inputs; {
           unstable = unstable.legacyPackages.${prev.system};
           # rnix-lsp = rnix-lsp.defaultPackage.${prev.system};
           # webcord = webcord.packages.${prev.system}.default;
           # nil = nil.packages.${prev.system}.default; # check it later
         })
-      ];
-    in
-    {
-      nixosConfigurations = import ./hosts {
-        inherit (nixpkgs) lib;
-        inherit nixpkgs overlays home-manager inputs user;
-      };
+    ];
+  in {
+    nixosConfigurations = import ./hosts {
+      inherit (nixpkgs) lib;
+      inherit nixpkgs overlays home-manager inputs user;
     };
+  };
 }
