@@ -11,11 +11,12 @@
     ../modules/home/gtk.nix
     ../modules/home/librewolf.nix
     ../modules/home/vscodium.nix
+    ../modules/home/ranger.nix
   ];
 
   home.packages = with pkgs; [
     (tor-browser-bundle-bin.override {
-      # useHardenedMalloc = false; # it broke again???
+      useHardenedMalloc = false; # it broke again???
     })
 
     vlc
@@ -23,6 +24,7 @@
 
     tdesktop # telegram
     element-desktop # matrix
+    unstable.webcord-vencord
 
     keepassxc # password manager
     krita
@@ -38,15 +40,15 @@
     # lapce
     # blender-hip # TODO: just blender on nvidia?
     virt-manager
+    unstable.bottles
 
     rnix-lsp # nix language server
     unstable.nil # another nix language server
+    alejandra
     rustup # rust toolchain manager
     # rust-analyzer
     # taplo
     graphviz-nox
-
-    ranger # tui file manager
 
     hollywood
     # filelight # file size graph
@@ -131,6 +133,10 @@
       };
       dawnTime = "6:00-7:45";
       duskTime = "20:35-22:15";
+    };
+    syncthing.tray = {
+      enable = true;
+      command = "syncthingtray --wait";
     };
   };
 

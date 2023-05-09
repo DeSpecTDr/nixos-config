@@ -63,6 +63,18 @@
     powerOnBoot = false;
   };
   services.blueman.enable = true;
+
+  # services.nextcloud = {
+  #   enable = true;
+  #   package = pkgs.nextcloud25;
+  #   hostName = "localhost:8080";
+  #   config = {
+  #     adminpassFile = "${pkgs.writeText "adminpass" "test123321"}";
+  #     extraTrustedDomains = ["192.168.0.24"];
+  #   };
+  # };
+  # networking.firewall.allowedTCPPorts = [80];
+
   # programs.iftop.enable = true;
   # programs.iotop.enable = true;
   # programs.mtr.enable = true;

@@ -49,7 +49,7 @@
   users.users.${user} = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = ["networkmanager" "wheel" "video" "libvirtd" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "video" "libvirtd" "dialout" "adbusers"];
     initialPassword = "notmyrealpassword";
   };
 
@@ -101,6 +101,7 @@
     flatpak.enable = true; # flatseal, steam, discord, (DRI_PRIME=1)
     udisks2.enable = true; # TODO: automount usb drives
     dbus.enable = true;
+    gvfs.enable = true; # to mount android phone
     # fwupd.enable = true; # firmware updates
     openssh = {
       enable = true;
@@ -130,6 +131,7 @@
     gnome-disks.enable = true; # for disk benchmarking
     kdeconnect.enable = true;
     seahorse.enable = true;
+    adb.enable = true;
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
@@ -157,6 +159,8 @@
       extraConfig = "Defaults insults";
     };
   };
+
+  powerManagement.cpuFreqGovernor = "schedutil"; # a good default for now
 
   documentation.man.generateCaches = true; # for autocompletion
   # environment.pathsToLink = [

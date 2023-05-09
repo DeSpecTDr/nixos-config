@@ -33,7 +33,7 @@ in {
           dwt = "disabled";
         };
       };
-      output."*".bg = "${../../wallpapers/sombrerogalaxy.jpg} fill";
+      output."*".bg = "~/Wallpapers/*.jpg fill";
       terminal = "kitty";
       menu = "bemenu-run";
       modifier = mod;
@@ -52,8 +52,8 @@ in {
         "XF86MonBrightnessUp" = "exec light -A 20";
 
         # audio keys
-        "XF86AudioRaiseVolume" = "exec pamixer -i 10";
-        "XF86AudioLowerVolume" = "exec pamixer -d 10";
+        "XF86AudioRaiseVolume" = "exec pamixer -i 5";
+        "XF86AudioLowerVolume" = "exec pamixer -d 5";
         "XF86AudioMute" = "exec pamixer -t";
         "Shift+XF86AudioMute" = "exec pamixer --default-source -t";
 

@@ -57,8 +57,6 @@
 
   swapDevices = [{device = "/dev/disk/by-uuid/39448f34-d8c3-40e2-ab83-23d880489d62";}];
 
-  powerManagement.cpuFreqGovernor = "ondemand";
-
   hardware = {
     cpu.amd.updateMicrocode = true;
     enableRedistributableFirmware = true; # TODO: disable and check what fails
