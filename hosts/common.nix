@@ -10,6 +10,7 @@
     ../modules/pipewire.nix
     ../modules/printer.nix
     ../modules/syncthing.nix
+    ../modules/thunar.nix
   ];
 
   boot.supportedFilesystems = ["ntfs"]; # for external hdd
@@ -23,7 +24,7 @@
 
   boot = {
     kernel.sysctl = {"vm.swappiness" = 1;};
-    tmpOnTmpfs = true;
+    tmp.useTmpfs = true;
   };
 
   networking = {
@@ -99,13 +100,11 @@
   services = {
     gnome.gnome-keyring.enable = true; # switch to keepassxc secret service?
     flatpak.enable = true; # flatseal, steam, discord, (DRI_PRIME=1)
-    udisks2.enable = true; # TODO: automount usb drives
     dbus.enable = true;
-    gvfs.enable = true; # to mount android phone
     # fwupd.enable = true; # firmware updates
     openssh = {
       enable = true;
-      passwordAuthentication = false;
+      settings.PasswordAuthentication = false;
       # startWhenNeeded = true;
     };
     logind.extraConfig = ''
@@ -132,14 +131,6 @@
     kdeconnect.enable = true;
     seahorse.enable = true;
     adb.enable = true;
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-        thunar-media-tags-plugin
-      ];
-    };
   };
 
   security = {
@@ -178,5 +169,5 @@
   # in
   # formatted;
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

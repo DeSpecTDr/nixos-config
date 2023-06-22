@@ -34,7 +34,7 @@ in {
         };
       };
       output."*".bg = "~/Wallpapers/*.jpg fill";
-      terminal = "kitty";
+      terminal = "wezterm";
       menu = "bemenu-run";
       modifier = mod;
       bindkeysToCode = true;

@@ -144,7 +144,7 @@
     man.generateCaches = true; # TODO: does this work
 
     gpg.enable = true;
-    # sagemath.enable = true;
+    sagemath.enable = true;
     kitty = {
       enable = true;
       # theme = "Gruvbox Dark";
@@ -154,6 +154,20 @@
       settings = {
         background_opacity = "0.8";
       };
+    };
+    wezterm = {
+      enable = true;
+      extraConfig = ''
+        return {
+          font = wezterm.font("Hack Nerd Font"),
+          -- font_size = 16.0,
+          -- color_scheme = "Tomorrow Night",
+          window_background_opacity = 0.8,
+          hide_tab_bar_if_only_one_tab = true,
+          -- default_prog = { "zsh", "--login", "-c", "tmux attach -t dev || tmux new -s dev" },
+          -- keys = {{key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},}
+        }
+      '';
     };
     starship = {
       enable = true;
@@ -203,7 +217,7 @@
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
-    stateVersion = "22.11";
+    stateVersion = "23.05";
   };
 
   home.file."homepackages.txt".text = builtins.concatStringsSep "\n" config.home.packages;

@@ -16,16 +16,13 @@
     # };
   };
 
-  services.yggdrasil = {
-    enable = true;
-    persistentKeys = true;
-    settings = {
-      Peers = [
-        "tls://ygg.averyan.ru:8362"
-      ];
-      # IfName = "ygg0";
-    };
-  };
+  # services.yggdrasil = {
+  #   enable = true;
+  #   persistentKeys = true;
+  #   settings = {
+  #     IfName = "ygg0";
+  #   };
+  # };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
