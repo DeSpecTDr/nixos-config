@@ -14,15 +14,17 @@
     elmerfem
   ];
 
-  xsession.enable = true;
+  # xsession.enable = true;
   xsession.windowManager.i3 = let
     mod = "Mod4";
   in {
     enable = true;
+    package = pkgs.i3-gaps;
     config = {
       terminal = "kitty";
       # menu = "";
       modifier = mod;
+      defaultWorkspace = "workspace number 1";
       keybindings = lib.mkOptionDefault {
         "${mod}+q" = "kill";
         "${mod}+c" = "exec flameshot gui";
@@ -45,9 +47,13 @@
         "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPrev" = "exec playerctl previous";
       };
-      # bars = [{
-      #   command = "waybar";
-      # }];
+      bars = [];
+      # bars = [
+      #   {
+      #     position = "top";
+      #     statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-top.toml";
+      #   }
+      # ];
       startup = [
         {
           command = "autotiling";
@@ -56,4 +62,19 @@
       ];
     };
   };
+
+  # programs.i3status-rust = {
+  #   enable = true;
+  #   # bars = {
+  #   #   top = {
+  #   #     blocks = [
+  #   #       {
+  #   #         block = "time";
+  #   #         interval = 60;
+  #   #         format = "%a %d/%m %k:%M %p";
+  #   #       }
+  #   #     ];
+  #   #   };
+  #   # };
+  # };
 }

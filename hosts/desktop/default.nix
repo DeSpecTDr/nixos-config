@@ -48,16 +48,21 @@
     enable = true;
     layout = "us,ru";
     xkbOptions = "grp:alt_shift_toggle";
-    # desktopManager = {
-    #   xfce.enable = true;
-    # };
-    windowManager.i3.enable = true;
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+    };
     desktopManager = {
       xterm.enable = false;
+      xfce = {
+        enable = true;
+        # noDesktop = true;
+        enableXfwm = false;
+      };
     };
     displayManager = {
       lightdm.enable = true;
-      defaultSession = "none+i3";
+      defaultSession = "xfce+i3";
     };
     videoDrivers = ["nvidia"];
   };
