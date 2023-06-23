@@ -13,7 +13,6 @@ in {
     mako # notification system
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     swaybg # wallpapers (try making animated?)
-    swaylock-effects # check its repository later
   ];
 
   # TODO: mako config
@@ -63,6 +62,7 @@ in {
         "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPrev" = "exec playerctl previous";
       };
+      window.titlebar = false;
       gaps = {
         smartGaps = true;
         inner = 5;
@@ -119,14 +119,18 @@ in {
   };
 
   programs = {
-    swaylock.settings = {
-      daemonize = true; # is it needed?
-      show-failed-attempts = true;
-      screenshots = true;
-      clock = true;
-      indicator = true;
-      effect-blur = "7x5";
-      fade-in = "0.2";
+    swaylock = {
+      enable = true;
+      package = pkgs.swaylock-effects;
+      settings = {
+        daemonize = true; # is it needed?
+        show-failed-attempts = true;
+        screenshots = true;
+        clock = true;
+        indicator = true;
+        effect-blur = "7x5";
+        fade-in = "0.2";
+      };
     };
     waybar = {
       enable = true;

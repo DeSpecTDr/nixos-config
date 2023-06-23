@@ -14,6 +14,7 @@
   ];
 
   boot.supportedFilesystems = ["ntfs"]; # for external hdd
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [

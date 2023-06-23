@@ -10,6 +10,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # TODO:
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix-doom-emacs = {
     #   url = "github:nix-community/nix-doom-emacs";
     #   inputs.nixpkgs.follows = "nixpkgs";

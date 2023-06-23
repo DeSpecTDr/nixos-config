@@ -107,4 +107,6 @@
     upower.enable = true; # FIXME: Doesn't work, for safely hibernating when 2 mins of charge are left
     tlp.enable = true; # preserve power
   };
+
+  hardware.opengl.package = pkgs.unstable.mesa.drivers; # FIXME:
 }

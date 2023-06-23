@@ -42,9 +42,8 @@
     virt-manager
     unstable.bottles
 
-    rnix-lsp # nix language server
-    unstable.nil # another nix language server
-    alejandra
+    unstable.nil # nix language server
+    alejandra # better nix formatter
     rustup # rust toolchain manager
     # rust-analyzer
     # taplo
