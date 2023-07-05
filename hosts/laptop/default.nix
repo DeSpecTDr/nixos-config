@@ -108,5 +108,5 @@
     tlp.enable = true; # preserve power
   };
 
-  hardware.opengl.package = pkgs.unstable.mesa.drivers; # FIXME:
+  # hardware.opengl.package = pkgs.unstable.mesa.drivers; # FIXME:
 }

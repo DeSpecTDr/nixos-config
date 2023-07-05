@@ -24,7 +24,10 @@
   # environment.systemPackages = with pkgs; [ ];
 
   boot = {
-    kernel.sysctl = {"vm.swappiness" = 1;};
+    kernel.sysctl = {
+      "vm.swappiness" = 1;
+      "kernel.sysrq" = 1; # TODO: set specific flags
+    };
     tmp.useTmpfs = true;
   };
 
