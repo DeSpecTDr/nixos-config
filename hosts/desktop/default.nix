@@ -16,14 +16,6 @@
     # };
   };
 
-  # services.yggdrasil = {
-  #   enable = true;
-  #   persistentKeys = true;
-  #   settings = {
-  #     IfName = "ygg0";
-  #   };
-  # };
-
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
     loader = {

@@ -20,6 +20,7 @@
           useUserPackages = true;
           extraSpecialArgs = {inherit user;};
           users.${user} = lib.mkMerge [
+            inputs.nix-index-database.hmModules.nix-index
             (import ./home.nix)
             # inputs.nix-doom-emacs.hmModule
             (import ./laptop/home.nix)

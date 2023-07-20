@@ -1,9 +1,10 @@
 # nvim config from MatthiasBenaets
 # todo: https://github.com/figsoda/dotfiles/blob/main/lib/nvim/default.nix
 {pkgs, ...}: {
+  home.packages = [pkgs.neovim];
   programs = {
     neovim = {
-      enable = true;
+      # enable = true;
 
       plugins = with pkgs.vimPlugins; [
         rust-tools-nvim

@@ -14,11 +14,12 @@
   ];
 
   boot.supportedFilesystems = ["ntfs"]; # for external hdd
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "cnijfilter2"
+      "obsidian"
     ];
 
   # environment.systemPackages = with pkgs; [ ];
@@ -33,7 +34,25 @@
 
   networking = {
     networkmanager.enable = true;
+    hosts = {
+      "200:571e:effc:1361:696b:35b5:e577:5a63" = ["vim3"];
+    };
     # useDHCP = false; networkmanager manages dhcp itself
+  };
+
+  services.yggdrasil = {
+    enable = true;
+    persistentKeys = true;
+    settings = {
+      Peers = [
+        # "tls://[2a00:b700:5::5:34]:65535"
+        "tls://x-mow-1.sergeysedoy97.ru:65535"
+        # "tls://[2a09:5302:ffff::992]:443"
+        "tls://45.95.202.21:443"
+        "tls://ygg.averyan.ru:8362"
+      ];
+      IfName = "ygg0";
+    };
   };
 
   time.timeZone = "Europe/Moscow";
@@ -85,10 +104,10 @@
     fonts = with pkgs; [
       (nerdfonts.override {
         fonts = [
-          "FiraMono"
-          "FiraCode"
+          # "FiraMono"
+          # "FiraCode"
           "Hack"
-          "Ubuntu"
+          # "Ubuntu"
         ];
       })
     ];
@@ -135,6 +154,11 @@
     kdeconnect.enable = true;
     seahorse.enable = true;
     adb.enable = true;
+    # gnupg.agent = {
+      # enable = true;
+      # pinentryFlavor = "gnome3";
+      # enableSSHSupport = true; # TODO:
+    # };
   };
 
   security = {
@@ -148,6 +172,7 @@
     # };
     sudo = {
       # enable = false;
+      execWheelOnly = true;
       package = pkgs.sudo.override {
         withInsults = true;
       };
@@ -157,7 +182,6 @@
 
   powerManagement.cpuFreqGovernor = "schedutil"; # a good default for now
 
-  documentation.man.generateCaches = true; # for autocompletion
   # environment.pathsToLink = [
   #   # "/share/zsh"
   #   "/share/fish"

@@ -12,6 +12,7 @@
     ../modules/home/librewolf.nix
     ../modules/home/vscodium.nix
     ../modules/home/ranger.nix
+    ../modules/home/gpg.nix
   ];
 
   home.packages = with pkgs; [
@@ -24,7 +25,7 @@
 
     tdesktop # telegram
     element-desktop # matrix
-    unstable.webcord-vencord
+    webcord-vencord
 
     keepassxc # password manager
     krita
@@ -35,14 +36,15 @@
     okular # pdf viewer
     audacious # audio player
     joplin-desktop # todo list
-    # logseq # todo list
+    logseq # todo list
+    obsidian # todo list
     qbittorrent
     # lapce
     # blender-hip # TODO: just blender on nvidia?
     virt-manager
-    unstable.bottles
+    bottles
 
-    unstable.nil # nix language server
+    nil # nix language server
     alejandra # better nix formatter
     rustup # rust toolchain manager
     # rust-analyzer
@@ -53,11 +55,10 @@
     # filelight # file size graph
     # ckan # ksp mod manager
 
-    # wezterm # terminal (check out later)
     flameshot
     playerctl
 
-    texlive.combined.scheme-full # latex
+    # texlive.combined.scheme-full # latex
     hdparm
     hwinfo
     powertop
@@ -128,24 +129,21 @@
       enable = true;
       temperature = {
         day = 6500;
-        night = 2000;
+        night = 1000;
       };
       dawnTime = "6:00-7:45";
       duskTime = "20:35-22:15";
     };
     syncthing.tray = {
-      enable = true;
+      enable = true; # TODO: broken
       command = "syncthingtray --wait";
     };
   };
 
   programs = {
-    man.generateCaches = true; # TODO: does this work
-
-    gpg.enable = true;
-    sagemath.enable = true;
+    # sagemath.enable = true; # todo: move to devshell
     kitty = {
-      enable = true;
+      enable = false;
       # theme = "Gruvbox Dark";
       # font.name = "Fura Mono Regular Nerd Font Complete";
       # font.name = "Fira Code Regular Nerd Font Complete";
