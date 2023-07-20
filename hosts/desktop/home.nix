@@ -21,7 +21,7 @@
     enable = true;
     package = pkgs.i3-gaps;
     config = {
-      terminal = "kitty";
+      terminal = "wezterm";
       # menu = "";
       modifier = mod;
       defaultWorkspace = "workspace number 1";
