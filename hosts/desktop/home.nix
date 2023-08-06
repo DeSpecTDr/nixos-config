@@ -12,13 +12,15 @@
     gmsh
     calculix
     elmerfem
+    
+    firefox
   ];
 
   # xsession.enable = true;
   xsession.windowManager.i3 = let
     mod = "Mod4";
   in {
-    enable = true;
+    # enable = true;
     package = pkgs.i3-gaps;
     config = {
       terminal = "wezterm";

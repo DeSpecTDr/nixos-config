@@ -8,7 +8,7 @@
   imports = [
     ../modules/home/nvim.nix
     ../modules/home/shells.nix
-    ../modules/home/gtk.nix
+    # ../modules/home/gtk.nix
     ../modules/home/librewolf.nix
     ../modules/home/vscodium.nix
     ../modules/home/ranger.nix
@@ -42,7 +42,7 @@
     # lapce
     # blender-hip # TODO: just blender on nvidia?
     virt-manager
-    bottles
+    # bottles
 
     nil # nix language server
     alejandra # better nix formatter
@@ -59,6 +59,8 @@
     playerctl
 
     # texlive.combined.scheme-full # latex
+    hexyl
+    imagemagick
     hdparm
     hwinfo
     powertop
@@ -125,15 +127,15 @@
 
   services = {
     # kdeconnect.enable = true;
-    gammastep = {
-      enable = true;
-      temperature = {
-        day = 6500;
-        night = 1000;
-      };
-      dawnTime = "6:00-7:45";
-      duskTime = "20:35-22:15";
-    };
+    # gammastep = {
+    #   enable = true;
+    #   temperature = {
+    #     day = 6500;
+    #     night = 1000;
+    #   };
+    #   dawnTime = "6:00-7:45";
+    #   duskTime = "20:35-22:15";
+    # };
     syncthing.tray = {
       enable = true; # TODO: broken
       command = "syncthingtray --wait";

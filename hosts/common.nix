@@ -152,7 +152,7 @@
     light.enable = true; # brightness
     gnome-disks.enable = true; # for disk benchmarking
     kdeconnect.enable = true;
-    seahorse.enable = true;
+    # seahorse.enable = true;
     adb.enable = true;
     # gnupg.agent = {
       # enable = true;

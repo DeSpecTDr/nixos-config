@@ -6,6 +6,7 @@
 }: {
   imports = [
     ../../modules/home/sway.nix
+    ../../modules/home/gtk.nix
     # ../../modules/home/emacs.nix
   ];
 
